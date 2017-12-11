@@ -7,7 +7,7 @@ var level;
 
 
 function preload() {
-  //level = loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Flevel.png?1512979496742');
+  level = loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Flevel.png?1512979496742');
   squareGroundImg= loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fsquareground.png?1512964611722');
 }
 
@@ -16,16 +16,7 @@ function setup() {
   cnv.parent('sketch-holder');
   
   ground = new Group();
-  for (var i =0; i<level.height/4; i++){
-    for (var j =0; j<level.width/4; j++){
-      if (level.get(j,i)[3] == 255 ){
-        var temp  = createSprite(j*block +block/2, i*block +block/2, block, block);
-        temp.draw = function() { image(squareGroundImg,0,0,block,block) }
-        //temp.visible = false;
-        ground.add(temp);
-      }   
-    }
-  }
+  //imageToMap(level, ground);
   
   spr = createSprite(32, 32, block, block*1.5);
   spr.shapeColor = color(255);
@@ -71,4 +62,27 @@ function keyInput() {
 function moveCamera() {
   camera.position.x -= (camera.position.x - spr.position.x)*.08 ;
   camera.position.y -= (camera.position.y - spr.position.y)*.08 ;
+}
+
+function imageToMap(myImg,myMap){
+  for (var i =0; i<myImg.height; i++){
+    for (var j =0; j<myImg.width; j++){
+      if (myImg.get(j,i)[3] == 255 ){
+        var temp  = createSprite(j*block +block/2, i*block +block/2, block, block);
+        temp.draw = function() { image(squareGroundImg,0,0,block,block) }
+        //temp.visible = false;
+        myMap.add(temp);
+      }   
+    }
+  }
+}
+
+
+function createPlatform(x,y,width,height, img){
+  var temp  = createSprite(j*block +block/2, i*block +block/2, block, block);
+  temp.draw = function() { image(squareGroundImg,0,0,block,block) }
+  //temp.visible = false;
+  myMap.add(temp);
+  
+  return temp
 }
