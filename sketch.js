@@ -40,6 +40,7 @@ function setup() {
   
   spr = createSprite(width/2, height/2, block, block);
   spr.shapeColor = color(255);
+  spr.friction = 0.2;
 }
 
 function draw() {
@@ -47,25 +48,25 @@ function draw() {
   background(0,0,0);
   
   spr.addSpeed(0.25, 90);
-  spr.collide(ground, function() {this.velocity.y *= -1;});
+  spr.collide(ground);
   drawSprites();
 }
 
 function keyPressed() {
   if (keyCode == RIGHT_ARROW) {
-    spr.setSpeed(1.5, 0);
+    spr.velocity.x = 10;
   }
   else if (keyCode == DOWN_ARROW) {
-    spr.setSpeed(1.5, 90);
+    //spr.velocity.y = 10;
   }
   else if (keyCode == LEFT_ARROW) {
-    spr.setSpeed(1.5, 180);
+    spr.velocity.x = -10;
   }
   else if (keyCode == UP_ARROW) {
-    spr.setSpeed(1.5, 270);
+    //spr.velocity.y = 10;
   }
   else if (key == ' ') {
-    spr.setSpeed(0, 0);
+    spr.velocity.y = -10;
   }
   return false;
 }
