@@ -78,9 +78,15 @@ function imageToMap(myImg,myMap){
 }
 
 
-function createPlatform(x,y,width,height, img){
-  var temp  = createSprite(j*block +block/2, i*block +block/2, block, block);
-  temp.draw = function() { image(squareGroundImg,0,0,block,block) }
+function createPlatform(x,y,w,h,img) {
+  var temp  = createSprite(x*block +block/2, y*block +block/2, w*block, h*block);
+  temp.draw = function() {
+    for (var i =0; i<; i++){
+      for (var j =0; j<; j++){  
+        image(img,j,i,block,block)
+      }
+    }
+  }
   //temp.visible = false;
   myMap.add(temp);
   
