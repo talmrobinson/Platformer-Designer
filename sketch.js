@@ -3,24 +3,11 @@ var ground;
 var spr;
 var squareGroundImg;
 var landed = false;
-var level = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-             1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-             1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-             1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,
-             1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,
-             1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,
-             1,0,0,1,0,0,0,0,1,0,0,0,0,0,0,1,
-             1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
-             1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,
-             1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,
-             1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,
-             1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,
-             1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,
-             1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,
-             1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+var level;
 
 
 function preload() {
+  level = loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Flevel.png?1512972387025');
   squareGroundImg= loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fsquareground.png?1512964611722');
 }
 
@@ -29,9 +16,9 @@ function setup() {
   cnv.parent('sketch-holder');
   
   ground = new Group();
-  for (var i =0; i<15; i++){
-    for (var j =0; j<16; j++){
-      if (level[i*16+j]){
+  for (var i =0; i<level.height; i++){
+    for (var j =0; j<level.width; j++){
+      if (level.get(i,j) ){
         var temp  = createSprite(j*block +block/2, i*block +block/2, block, block);
         temp.draw = function() { image(squareGroundImg,0,0,block,block) }
         ground.add(temp);
