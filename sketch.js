@@ -41,7 +41,7 @@ function setup() {
   
   spr = createSprite(width/2, height/2, block, block*1.5);
   spr.shapeColor = color(255);
-  spr.friction = 0.1;
+  spr.friction = 0.2;
   //spr.limitSpeed(10);
 }
 
@@ -49,7 +49,7 @@ function draw() {
   noSmooth();
   background(0,0,0);
   
-  spr.addSpeed(1.5, 90);
+  spr.addSpeed(1.0, 90);
   
   if (spr.collide(ground) && spr.touching.bottom){
     spr.velocity.y = 0;
