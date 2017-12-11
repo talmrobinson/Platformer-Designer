@@ -2,6 +2,7 @@ var block = 32;
 var ground;
 var spr;
 var squareGroundImg;
+var landed = false;
 var level = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
              0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
              0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,
@@ -50,16 +51,17 @@ function draw() {
   
   spr.addSpeed(1, 90);
   
-  if (spr.collide(ground) ){
+  if (spr.collide(ground) && spr.touching.bottom){
     spr.velocity.y = 0;
+    landed = true;
   } 
   
   
   if (keyDown(LEFT_ARROW)){
-    spr.velocity.x += -1;
+    spr.velocity.x += -.8;
   }
   if (keyDown(RIGHT_ARROW)){
-    spr.velocity.x += 1;
+    spr.velocity.x += .8;
   }
     
   
@@ -67,8 +69,9 @@ function draw() {
 }
 
 function keyPressed() {
-  if (key == ' ' && spr.touching.bottom) {
-      spr.velocity.y = -10;
+  if (key == ' ' && landed) {
+      spr.velocity.y = -20;
+      landed = false;
   }
   return false;
 }
