@@ -7,7 +7,7 @@ var level;
 
 
 function preload() {
-  level = loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Flevel.png?1512972387025');
+  level = loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Flevel.png?1512974799320');
   squareGroundImg= loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fsquareground.png?1512964611722');
 }
 
@@ -19,14 +19,15 @@ function setup() {
   for (var i =0; i<level.height; i++){
     for (var j =0; j<level.width; j++){
       if (level.get(i,j)[0] == 0 ){
-        //var temp  = createSprite(j*block +block/2, i*block +block/2, block, block);
-        //temp.draw = function() { image(squareGroundImg,0,0,block,block) }
-        //ground.add(temp);
+        var temp  = createSprite(j*block +block/2, i*block +block/2, block, block);
+        temp.draw = function() { image(squareGroundImg,0,0,block,block) }
+        //temp.visible = false;
+        ground.add(temp);
       }   
     }
   }
   
-  spr = createSprite(width/2, height/2, block, block*1.5);
+  spr = createSprite(32, 32, block, block*1.5);
   spr.shapeColor = color(255);
   spr.friction = 0.2;
   //spr.limitSpeed(10);
