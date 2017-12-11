@@ -24,7 +24,6 @@ function preload() {
 }
 
 function setup() {
-  noSmooth();
   var cnv = createCanvas(512,480);
   cnv.parent('sketch-holder');
   
@@ -33,8 +32,7 @@ function setup() {
     for (var j =0; j<16; j++){
       if (level[i*16+j]){
         var temp  = createSprite(j*block +block/2, i*block +block/2, block, block);
-        squareGroundImg.resize(block, 0);
-        temp.addImage(squareGroundImg);
+        temp.draw = function() { image(squareGroundImg,0,0,block,block) }
         ground.add(temp);
       }   
     }
@@ -42,11 +40,14 @@ function setup() {
   
   spr = createSprite(width/2, height/2, block, block);
   spr.shapeColor = color(255);
-  spr.velocity.y = 0.5;
 }
 
 function draw() {
-  background(0,0,0);  
+  noSmooth();
+  background(0,0,0);
+  
+  spr.addSpeed(0.25, 90);
+  spr.collide(ground, function() {this.velocity.y *= -1;});
   drawSprites();
 }
 
