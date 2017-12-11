@@ -41,22 +41,25 @@ function setup() {
   spr = createSprite(width/2, height/2, block, block);
   spr.shapeColor = color(255);
   spr.friction = 0.1;
-  spr.limitSpeed(10);
+  //spr.limitSpeed(10);
 }
 
 function draw() {
   noSmooth();
   background(0,0,0);
   
-  spr.addSpeed(2, 90);
-  spr.collide(ground);
+  spr.addSpeed(1, 90);
+  
+  if (spr.collide(ground) ){
+    spr.velocity.y = 0;
+  } 
   
   
   if (keyDown(LEFT_ARROW)){
-    spr.velocity.x = -10;
+    spr.velocity.x += -1;
   }
   if (keyDown(RIGHT_ARROW)){
-    spr.velocity.x = 10;
+    spr.velocity.x += 1;
   }
     
   
@@ -64,14 +67,8 @@ function draw() {
 }
 
 function keyPressed() {
-  if (keyCode == DOWN_ARROW) {
-    //spr.velocity.y = 10;
-  }
-  else if (keyCode == UP_ARROW) {
-    //spr.velocity.y = 10;
-  }
-  else if (key == ' ' && spr.touching.bottom) {
-      spr.velocity.y = -20;
+  if (key == ' ' && spr.touching.bottom) {
+      spr.velocity.y = -10;
   }
   return false;
 }
