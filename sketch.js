@@ -56,22 +56,25 @@ function draw() {
     landed = true;
   } 
   
-  
+  keyInput();
+  moveCamera();
+  drawSprites();
+}
+
+function keyInput() {
   if (keyDown(LEFT_ARROW)){
     spr.velocity.x += -.8;
   }
   if (keyDown(RIGHT_ARROW)){
     spr.velocity.x += .8;
   }
-    
-  
-  drawSprites();
+  if (keyDown(' ') && landed){
+    spr.velocity.y = -32;
+    landed = false;
+  }
 }
 
-function keyPressed() {
-  if (key == ' ' && landed) {
-      spr.velocity.y = -32;
-      landed = false;
-  }
-  return false;
+function moveCamera() {
+  camera.position.x -= (camera.position.x - spr.position.x)*.08 ;
+  camera.position.y -= (camera.position.y - spr.position.y)*.08 ;
 }
