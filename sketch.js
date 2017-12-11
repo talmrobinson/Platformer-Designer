@@ -7,7 +7,7 @@ var level;
 
 
 function preload() {
-  level = loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Flevel.png?1512974799320');
+  level = loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Flevel.png?1512979496742');
   squareGroundImg= loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fsquareground.png?1512964611722');
 }
 
@@ -18,7 +18,7 @@ function setup() {
   ground = new Group();
   for (var i =0; i<level.height; i++){
     for (var j =0; j<level.width; j++){
-      if (level.get(i,j)[0] == 0 ){
+      if (level.get(j,i)[3] == 255 ){
         var temp  = createSprite(j*block +block/2, i*block +block/2, block, block);
         temp.draw = function() { image(squareGroundImg,0,0,block,block) }
         //temp.visible = false;
@@ -37,7 +37,7 @@ function draw() {
   noSmooth();
   background(0,0,0);
   
-  //spr.addSpeed(1.0, 90);
+  spr.addSpeed(1.0, 90);
   
   if (spr.collide(ground) && spr.touching.bottom){
     spr.velocity.y = 0;
