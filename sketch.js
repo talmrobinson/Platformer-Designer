@@ -18,10 +18,10 @@ function setup() {
   ground = new Group();
   for (var i =0; i<level.height; i++){
     for (var j =0; j<level.width; j++){
-      if (level.get(i,j) ){
-        var temp  = createSprite(j*block +block/2, i*block +block/2, block, block);
-        temp.draw = function() { image(squareGroundImg,0,0,block,block) }
-        ground.add(temp);
+      if (level.get(i,j)[0] == 0 ){
+        //var temp  = createSprite(j*block +block/2, i*block +block/2, block, block);
+        //temp.draw = function() { image(squareGroundImg,0,0,block,block) }
+        //ground.add(temp);
       }   
     }
   }
@@ -36,7 +36,7 @@ function draw() {
   noSmooth();
   background(0,0,0);
   
-  spr.addSpeed(1.0, 90);
+  //spr.addSpeed(1.0, 90);
   
   if (spr.collide(ground) && spr.touching.bottom){
     spr.velocity.y = 0;
