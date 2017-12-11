@@ -1,6 +1,7 @@
 function setup() {
-  createCanvas(768,720);
-  createSprite(400, 200, 50, 50);
+  var cnv = createCanvas(256,240);
+  createSprite(width/2, height/2, 50, 50);
+  cnv.parent('sketch-holder');
 }
 
 function draw() {
