@@ -25,7 +25,7 @@ function preload() {
 }
 
 function setup() {
-  var cnv = createCanvas(512,480);
+  var cnv = createCanvas(768,576);
   cnv.parent('sketch-holder');
   
   ground = new Group();
@@ -73,9 +73,11 @@ function draw() {
   moveCamera();
   drawSprites();
   
-  if (frameCount%240==0)
+  if (frameCount%60==0){
     console.log( "char position:"+spr.position.x/block + ', ' + spr.position.y/block);
-    console.log( "mouse position:"+Math.floor((mouseX-camera.position.x)/block) +' '+ Math.floor((mouseY-camera.position.y)/block) );
+    console.log( "mouse position:"+ worldMouseX+' '+worldMouseY );
+
+  }
 }
 
 function keyInput() {
@@ -133,4 +135,12 @@ function createPlatform(x,y,w,h,img) {
     }
   }
   return temp
+}
+
+function worldMouseX() {
+  return Math.floor((mouseX-width/2 +camera.position.x)/block);
+}
+
+function worldMouseY() {
+  return Math.floor((mouseY-height/2+camera.position.y)/block);
 }
