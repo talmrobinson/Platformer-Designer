@@ -133,7 +133,6 @@ function editor(editorMode) {
   
   noFill();
   stroke('rgb(0,255,0)');
-  rect(worldMouseX()*block, worldMouseY()*block, block, block);
   
   if (mouseWentDown(LEFT)){
     console.log( "mouse position:" + worldMouseX() +', '+ worldMouseY() );
@@ -143,6 +142,8 @@ function editor(editorMode) {
   
   if (mouseDown(LEFT))
     rect(drawX*block, drawY*block, (1+worldMouseX()-drawX)*block, (1+worldMouseY()-drawY)*block );
+  else
+    rect(worldMouseX()*block, worldMouseY()*block, block, block);
   
   if (mouseWentUp(LEFT)){
     var temp = createPlatform(drawX, drawY, (1+worldMouseX()-drawX), (1+worldMouseY()-drawY), squareGroundImg);
