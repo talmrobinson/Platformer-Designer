@@ -142,17 +142,22 @@ function editor(editorMode) {
     drawY = worldMouseY();
   }
   
-  if (mouseDown(LEFT))
-    rect(drawX*block, drawY*block, (1+worldMouseX()-drawX)*block, (1+worldMouseY()-drawY)*block );
+  if (mouseDown(LEFT)){
+    var x = Math.min(worldMouseX(),drawX);
+    var y = Math.min(worldMouseY(),drawY);
+    var w = 1+ Math.abs(worldMouseX()-drawX);
+    var h = 1+ Math.abs(worldMouseY()-drawY);
+    rect(x*block, y*block, w*block, h*block);
+  }
   else
     rect(worldMouseX()*block, worldMouseY()*block, block, block);
   
   if (mouseWentUp(LEFT)){
-    var x = 
-    var y =
+    var x = Math.min(worldMouseX(),drawX);
+    var y = Math.min(worldMouseY(),drawY);
     var w = 1+ Math.abs(worldMouseX()-drawX);
     var h = 1+ Math.abs(worldMouseY()-drawY);
-    var temp = createPlatform(drawX, drawY, w, h, squareGroundImg);
+    var temp = createPlatform(x, y, w, h, squareGroundImg);
     temp.setCollider("rectangle", 0, 0, temp.width, temp.height );
 
     temp.addToGroup(ground);
