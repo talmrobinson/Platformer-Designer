@@ -18,10 +18,10 @@ function setup() {
   ground = new Group();
   //imageToMap(level, ground);
   
-  ground.add( createPlatform(2,6,5,5, squareGroundImg) );
-  ground.add( createPlatform(2,6,5,5, squareGroundImg) );
+  ground.add( createPlatform(0,15,16,1, squareGroundImg) );
+  ground.add( createPlatform(0,0,1,15, squareGroundImg) );
   
-  spr = createSprite(32, 32, block, block);
+  spr = createSprite(1*block, 1*block, block, block);
   spr.shapeColor = color(255);
   spr.friction = 0.1;
   //spr.limitSpeed(10);
@@ -67,7 +67,7 @@ function keyInput() {
 
 function moveCamera() {
   camera.position.x -= (camera.position.x - spr.position.x)*.08 ;
-  camera.position.y -= (camera.position.y - spr.position.y)*.08 ;
+  camera.position.y -= (camera.position.y - spr.position.y+block*5)*.08 ;
 }
 
 function imageToMap(myImg,myMap){
@@ -85,7 +85,7 @@ function imageToMap(myImg,myMap){
 
 
 function createPlatform(x,y,w,h,img) {
-  var temp  = createSprite(x*block, y*block, w*block, h*block);
+  var temp  = createSprite(x*block +w*block/2, y*block +h*block/2, w*block, h*block);
   temp.draw = function() {
     for (var i =0; i<h; i++){
       for (var j =0; j<w; j++){  
