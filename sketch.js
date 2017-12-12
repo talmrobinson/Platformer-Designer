@@ -8,6 +8,8 @@ var bgMusic;
 var jumpSound;
 var walkingAnimation;
 var standingImage;
+var drawX;
+var drawY;
 
 
 function preload() {
@@ -73,11 +75,17 @@ function draw() {
   moveCamera();
   drawSprites();
   
-  if (frameCount%60==0){
-    console.log( "char position:"+spr.position.x/block + ', ' + spr.position.y/block);
+  if (mouseWentDown(LEFT)){
+    //console.log( "char position:"+spr.position.x/block + ', ' + spr.position.y/block);
     console.log( "mouse position:" + worldMouseX() +', '+ worldMouseY() );
-
+    drawX = worldMouseX();
+    drawY = worldMouseY();
   }
+  
+  if (mouseWentUp(LEFT)){
+    ground.add( createPlatform(drawX,drawY, 1 + worldMouseX()-drawX, 1 + worldMouseY()-drawY, squareGroundImg) );
+  }
+  
 }
 
 function keyInput() {
