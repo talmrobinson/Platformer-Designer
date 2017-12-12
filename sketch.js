@@ -7,11 +7,13 @@ var level;
 var bgMusic;
 var jumpSound;
 var walkingAnimation;
+var standingImage;
 
 
 function preload() {
   level = loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Flevel.png?1512979496742');
   squareGroundImg= loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fsquareground.png?1512964611722');
+  standingImage = loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fstand.png?1513057083012');
   walkingAnimation = loadAnimation("https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fwalk1.png?1513055412898",
                                    "https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fwalk2.png?1513055413022",
                                    "https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fwalk3.png?1513055412888",
@@ -38,6 +40,7 @@ function setup() {
   spr.addAnimation( "walking", walkingAnimation);
   spr.addAnimation( "jumping", walkingAnimation.getImageAt(0));
   spr.addAnimation( "sliding", walkingAnimation.getImageAt(4));
+  spr.addAnimation( "standing", standingImage);
   spr.width = block;
   spr.height = block*2;
   //spr.limitSpeed(10);
@@ -59,7 +62,12 @@ function draw() {
     landed = true;
   }
   
-  spr.changeAnimation("sliding");
+  if (Math.aspr.velocity.x < 8 && spr.velocity.y == 0){
+    spr.changeAnimation("standing");
+  }else{
+    spr.changeAnimation("sliding");
+  }
+  
   keyInput();
   moveCamera();
   drawSprites();
