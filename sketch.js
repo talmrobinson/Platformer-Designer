@@ -31,8 +31,9 @@ function setup() {
   ground = new Group();
   //imageToMap(level, ground);
   
-  ground.add( createPlatform(0,15,16,4, squareGroundImg) );
-  ground.add( createPlatform(0,0,1,15, squareGroundImg) );
+  ground.add( createPlatform(0,14,16,4, squareGroundImg) );
+  ground.add( createPlatform(20,14,4,1, squareGroundImg) )
+  ground.add( createPlatform(0,9,1,6, squareGroundImg) );
   
   spr = createSprite(1*block, 1*block, block, block*2);
   spr.shapeColor = color(255);
