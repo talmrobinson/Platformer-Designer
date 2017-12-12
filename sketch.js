@@ -60,6 +60,12 @@ function draw() {
   
   if (!climbing)
     spr.addSpeed(1.2, 90);
+  else if (!spr.overlap(ladders)){
+    climbing = false;
+    spr.addSpeed(1.2, 90);
+  }
+    
+    
   
   if (spr.collide(ground) && spr.touching.bottom){
     spr.velocity.y = 0;
@@ -96,7 +102,7 @@ function keyInput() {
   }
   if (keyDown('w')){
     if (spr.overlap(ladders, function(s,l){s.position.x = l.position.x }) ){
-      spr.velocity.y -= .5;
+      spr.position.y-=2 ;
       spr.changeAnimation("standing");
       climbing = true;
     }
