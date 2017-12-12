@@ -64,7 +64,10 @@ function draw() {
   }
   
   if (mouseWentUp(LEFT)){
-    ground.add( createPlatform(drawX, drawY, 1+worldMouseX()-drawX, 1+worldMouseY()-drawY, squareGroundImg) );
+    console.log( "mouse position:" + worldMouseX() +', '+ worldMouseY() );
+    console.log(  +1+worldMouseX()-drawX+", "+1+worldMouseY()-drawY);
+    var temp = createPlatform(drawX, drawY, 1+worldMouseX()-drawX, 1+worldMouseY()-drawY, squareGroundImg);
+    ground.add( temp );
   }
   
   if (spr.collide(ground) && spr.touching.bottom){
