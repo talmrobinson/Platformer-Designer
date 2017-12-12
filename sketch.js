@@ -62,7 +62,7 @@ function draw() {
     landed = true;
   }
   
-  if (Math.aspr.velocity.x < 8 && spr.velocity.y == 0){
+  if ( Math.floor(spr.velocity.x) <2 && Math.abs(spr.velocity.y) < 1.5){
     spr.changeAnimation("standing");
   }else{
     spr.changeAnimation("sliding");
