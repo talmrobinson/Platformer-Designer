@@ -6,11 +6,18 @@ var landed = false;
 var level;
 var bgMusic;
 var jumpSound;
+var walkingAnimation;
 
 
 function preload() {
   level = loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Flevel.png?1512979496742');
   squareGroundImg= loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fsquareground.png?1512964611722');
+  walkingAnimation = loadAnimation("https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fwalk1.png?1513054408851",
+                                   "https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fwalk2.png?1513054408870",
+                                   "https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fwalk3.png?1513054408804",
+                                   "https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fwalk4.png?1513054408860",
+                                   "https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fwalk5.png?1513054408747",
+                                   "https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fwalk6.png?1513054408961");
   bgMusic = loadSound('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fmusic1.mp3?1513044930321');
   jumpSound = loadSound('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fjump.mp3?1513045615069');
 }
@@ -28,6 +35,9 @@ function setup() {
   spr = createSprite(1*block, 1*block, block, block*2);
   spr.shapeColor = color(255);
   spr.friction = 0.1;
+  spr.addAnimation( "walking", walkingAnimation);
+  spr.width = block;
+  spr.height = block*2;
   //spr.limitSpeed(10);
   //bgMusic.play();
 }
