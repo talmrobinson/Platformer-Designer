@@ -58,7 +58,7 @@ function keyInput() {
       spr.velocity.y = -16;
     }
     else if (spr.velocity.y < 0){
-      spr.velocity.y -=2;
+      spr.velocity.y -=1;
     }
     
     landed = false;
@@ -85,7 +85,7 @@ function imageToMap(myImg,myMap){
 
 
 function createPlatform(x,y,w,h,img) {
-  var temp  = createSprite(x*block - w*block/2, y*block - h*block/2, w*block, h*block);
+  var temp  = createSprite(x*block, y*block, w*block, h*block);
   temp.draw = function() {
     for (var i =0; i<h; i++){
       for (var j =0; j<w; j++){  
