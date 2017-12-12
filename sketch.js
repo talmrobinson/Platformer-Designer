@@ -1,6 +1,6 @@
 window.addEventListener("contextmenu", function(e) { e.preventDefault(); });
 
-var block = 32;
+var block = 64;
 var ground;
 var spr;
 var squareGroundImg;
