@@ -148,7 +148,11 @@ function editor(editorMode) {
     rect(worldMouseX()*block, worldMouseY()*block, block, block);
   
   if (mouseWentUp(LEFT)){
-    var temp = createPlatform(drawX, drawY, (1+worldMouseX()-drawX), (1+worldMouseY()-drawY), squareGroundImg);
+    var x = 
+    var y =
+    var w = 1+ Math.abs(worldMouseX()-drawX);
+    var h = 1+ Math.abs(worldMouseY()-drawY);
+    var temp = createPlatform(drawX, drawY, w, h, squareGroundImg);
     temp.setCollider("rectangle", 0, 0, temp.width, temp.height );
 
     temp.addToGroup(ground);
