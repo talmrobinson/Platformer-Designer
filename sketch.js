@@ -31,8 +31,9 @@ function setup() {
   ground = new Group();
   //imageToMap(level, ground);
   
-  ground.add( createPlatform(0,15,16,1, squareGroundImg) );
+  ground.add( createPlatform(0,15,16,4, squareGroundImg) );
   ground.add( createPlatform(0,0,1,15, squareGroundImg) );
+  ground.add( createPlatform(15,0,1,15, squareGroundImg) );
   
   spr = createSprite(1*block, 1*block, block, block*2);
   spr.shapeColor = color(255);
@@ -44,7 +45,7 @@ function setup() {
   spr.width = block;
   spr.height = block*2;
   //spr.limitSpeed(10);
-  //bgMusic.play();
+  bgMusic.play();
 }
 
 function draw() {
