@@ -75,7 +75,7 @@ function draw() {
   
   if (frameCount%60==0){
     console.log( "char position:"+spr.position.x/block + ', ' + spr.position.y/block);
-    console.log( "mouse position:"+ worldMouseX+' '+worldMouseY );
+    console.log( "mouse position:" + worldMouseX() +', '+ worldMouseY() );
 
   }
 }
