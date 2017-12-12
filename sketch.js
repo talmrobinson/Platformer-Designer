@@ -166,5 +166,16 @@ function editor(editorMode) {
     temp.remove();
   }
   
-  if (keyD)
+  if (keyWentUp('p')){
+    printMap();
+  }
+}
+
+
+function printMap() {
+  var temp = "";
+  for(var i =0; i<ground.length;i++){
+    
+    temp += "ground.add( createPlatform("+ x +","+ y +","+ w +","+ h +", squareGroundImg) );\n";
+  }
 }
