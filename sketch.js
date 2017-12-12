@@ -5,7 +5,6 @@ var ground;
 var spr;
 var squareGroundImg;
 var landed = false;
-var level;
 var bgMusic;
 var jumpSound;
 var walkingAnimation;
@@ -15,7 +14,6 @@ var drawY;
 
 
 function preload() {
-  level = loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Flevel.png?1512979496742');
   squareGroundImg= loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fsquareground2.png?1513061116416');
   standingImage = loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fstand.png?1513060104302');
   walkingAnimation = loadAnimation("https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fwalk1.png?1513055412898",
@@ -33,13 +31,10 @@ function setup() {
   cnv.parent('sketch-holder');
   
   ground = new Group();
-  //imageToMap(level, ground);
   
-  ground.add( createPlatform(0,14,16,4, squareGroundImg) );
-  ground.add( createPlatform(20,14,4,1, squareGroundImg) );
-  ground.add( createPlatform(0,9,1,6, squareGroundImg) );
+  ground.add( createPlatform(0,1,1,1, squareGroundImg) );
   
-  spr = createSprite(1*block, 1*block, block, block*2);
+  spr = createSprite(0.5*block, 0, block, block*2);
   spr.shapeColor = color(255);
   spr.friction = 0.1;
   spr.addAnimation( "walking", walkingAnimation);
@@ -171,4 +166,5 @@ function editor(editorMode) {
     temp.remove();
   }
   
+  if (keyD)
 }
