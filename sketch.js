@@ -1,3 +1,5 @@
+window.addEventListener("contextmenu", function(e) { e.preventDefault(); });
+
 var block = 32;
 var ground;
 var spr;
@@ -156,6 +158,7 @@ function editor(editorMode) {
     console.log( "right click:" + worldMouseX() +', '+ worldMouseY() );
     var temp = createSprite(worldMouseX()*block +block/2, worldMouseY()*block +block/2, 1, 1);
     ground.overlap( temp, removeSprite);
+    temp.remove();
   }
   
 }
