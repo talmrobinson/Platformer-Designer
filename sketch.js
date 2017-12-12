@@ -18,7 +18,9 @@ function setup() {
   ground = new Group();
   //imageToMap(level, ground);
   
-  spr = createSprite(32, 32, block, block*1.5);
+  ground.add( createPlatform(-8,32,16,16, squareGroundImg) );
+  
+  spr = createSprite(32, 32, block, block);
   spr.shapeColor = color(255);
   spr.friction = 0.1;
   //spr.limitSpeed(10);
@@ -81,14 +83,11 @@ function imageToMap(myImg,myMap){
 function createPlatform(x,y,w,h,img) {
   var temp  = createSprite(x*block +block/2, y*block +block/2, w*block, h*block);
   temp.draw = function() {
-    for (var i =0; i<; i++){
-      for (var j =0; j<; j++){  
-        image(img,j,i,block,block)
+    for (var i =0; i<h; i++){
+      for (var j =0; j<w; j++){  
+        image(img,j*block,i*block,block,block);
       }
     }
   }
-  //temp.visible = false;
-  myMap.add(temp);
-  
   return temp
 }
