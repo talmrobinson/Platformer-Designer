@@ -36,6 +36,7 @@ function setup() {
   spr.shapeColor = color(255);
   spr.friction = 0.1;
   spr.addAnimation( "walking", walkingAnimation);
+  spr.addAnimation( "jumping", walkingAnimation.getImageAt(0));
   spr.width = block;
   spr.height = block*2;
   //spr.limitSpeed(10);
@@ -69,10 +70,12 @@ function keyInput() {
   if (keyDown(LEFT_ARROW)){
     spr.velocity.x += -.5;
     spr.mirrorX(-1);
+    spr.changeAnimation("walking");
   }
   if (keyDown(RIGHT_ARROW)){
     spr.velocity.x += .5;
     spr.mirrorX(1);
+    spr.changeAnimation("walking");
   }
   if (keyDown(' ')){
     if (landed){
@@ -82,7 +85,7 @@ function keyInput() {
     else if (spr.velocity.y < 0){
       spr.velocity.y -=1;
     }
-    
+    spr.changeImage("jumping");
     landed = false;
   }
 }
