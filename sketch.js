@@ -34,7 +34,7 @@ function setup() {
   //imageToMap(level, ground);
   
   ground.add( createPlatform(0,14,16,4, squareGroundImg) );
-  ground.add( createPlatform(20,14,4,1, squareGroundImg) )
+  ground.add( createPlatform(20,14,4,1, squareGroundImg) );
   ground.add( createPlatform(0,9,1,6, squareGroundImg) );
   
   spr = createSprite(1*block, 1*block, block, block*2);
@@ -56,12 +56,21 @@ function draw() {
   
   spr.addSpeed(1.2, 90);
   
+  if (mouseWentDown(LEFT)){
+    //console.log( "char position:"+spr.position.x/block + ', ' + spr.position.y/block);
+    console.log( "mouse position:" + worldMouseX() +', '+ worldMouseY() );
+    drawX = worldMouseX();
+    drawY = worldMouseY();
+  }
+  
+  if (mouseWentUp(LEFT)){
+    ground.add( createPlatform(drawX, drawY, 1+worldMouseX()-drawX, 1+worldMouseY()-drawY, squareGroundImg) );
+  }
+  
   if (spr.collide(ground) && spr.touching.bottom){
     spr.velocity.y = 0;
-    
     if (!landed) //camera shake thump effect
       camera.position.y-=5; //camera shake thump effect
-    
     landed = true;
   }
   
@@ -74,17 +83,6 @@ function draw() {
   keyInput();
   moveCamera();
   drawSprites();
-  
-  if (mouseWentDown(LEFT)){
-    //console.log( "char position:"+spr.position.x/block + ', ' + spr.position.y/block);
-    console.log( "mouse position:" + worldMouseX() +', '+ worldMouseY() );
-    drawX = worldMouseX();
-    drawY = worldMouseY();
-  }
-  
-  if (mouseWentUp(LEFT)){
-    ground.add( createPlatform(drawX,drawY, 1 + worldMouseX()-drawX, 1 + worldMouseY()-drawY, squareGroundImg) );
-  }
   
 }
 
