@@ -152,4 +152,10 @@ function editor(editorMode) {
     temp.addToGroup(ground);
   }
   
+  if (mouseWentUp(RIGHT)){
+    console.log( "right click:" + worldMouseX() +', '+ worldMouseY() );
+    var temp = createSprite(worldMouseX()*block +block/2, worldMouseY()*block +block/2, 1, 1);
+    ground.overlap( temp, removeSprite);
+  }
+  
 }
