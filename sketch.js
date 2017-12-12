@@ -5,12 +5,14 @@ var squareGroundImg;
 var landed = false;
 var level;
 var bgMusic;
+var jumpSound;
 
 
 function preload() {
   level = loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Flevel.png?1512979496742');
   squareGroundImg= loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fsquareground.png?1512964611722');
   bgMusic = loadSound('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fmusic1.mp3?1513044930321');
+  jumpSound = loadSound('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fjump.mp3?1513045615069');
 }
 
 function setup() {
@@ -23,7 +25,7 @@ function setup() {
   ground.add( createPlatform(0,15,16,1, squareGroundImg) );
   ground.add( createPlatform(0,0,1,15, squareGroundImg) );
   
-  spr = createSprite(1*block, 1*block, block, block);
+  spr = createSprite(1*block, 1*block, block, block*2);
   spr.shapeColor = color(255);
   spr.friction = 0.1;
   //spr.limitSpeed(10);
@@ -63,6 +65,7 @@ function keyInput() {
   if (keyDown(' ')){
     if (landed){
       spr.velocity.y = -16;
+      jumpSound.play();
     }
     else if (spr.velocity.y < 0){
       spr.velocity.y -=1;
