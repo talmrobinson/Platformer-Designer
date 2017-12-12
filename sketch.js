@@ -12,7 +12,7 @@ var standingImage;
 
 function preload() {
   level = loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Flevel.png?1512979496742');
-  squareGroundImg= loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fsquareground2.png?1513060640970');
+  squareGroundImg= loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fsquareground2.png?1513061116416');
   standingImage = loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fstand.png?1513060104302');
   walkingAnimation = loadAnimation("https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fwalk1.png?1513055412898",
                                    "https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fwalk2.png?1513055413022",
@@ -62,7 +62,7 @@ function draw() {
     landed = true;
   }
   
-  if ( Math.floor(spr.velocity.x) <2 && Math.abs(spr.velocity.y) < 1.5 && landed == true){
+  if ( Math.floor(spr.velocity.x) <2 && landed == true){
     spr.changeAnimation("standing");
   }else{
     spr.changeAnimation("sliding");
@@ -80,12 +80,14 @@ function keyInput() {
   if (keyDown(LEFT_ARROW)){
     spr.velocity.x += -.5;
     spr.mirrorX(-1);
-    spr.changeAnimation("walking");
+    if (landed == true)
+      spr.changeAnimation("walking");
   }
   if (keyDown(RIGHT_ARROW)){
     spr.velocity.x += .5;
     spr.mirrorX(1);
-    spr.changeAnimation("walking");
+    if (landed == true)
+      spr.changeAnimation("walking");
   }
   if (keyDown(' ')){
     if (landed){
