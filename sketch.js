@@ -175,7 +175,11 @@ function editor(editorMode) {
 function printMap() {
   var temp = "";
   for(var i =0; i<ground.length;i++){
-    
-    temp += "ground.add( createPlatform("+ x +","+ y +","+ w +","+ h +", squareGroundImg) );\n";
+    var x = ground[i].position.x/block;
+    var y = ground[i].position.y/block;
+    var w = ground[i]._internalHeight/block;
+    var h = ground[i]._internalWidth/block;
+    temp += "ground.add( createPlatform("+ (x-0.5) +","+ (y-0.5) +","+ w +","+ h +", squareGroundImg) );\n";
   }
+  console.log(temp);
 }
