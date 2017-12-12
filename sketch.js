@@ -19,7 +19,7 @@ function setup() {
   //imageToMap(level, ground);
   
   ground.add( createPlatform(2,6,5,5, squareGroundImg) );
-  ground.add( createSprite(8*block, 8*block , block, block*5) );
+  ground.add( createPlatform(2,6,5,5, squareGroundImg) );
   
   spr = createSprite(32, 32, block, block);
   spr.shapeColor = color(255);
