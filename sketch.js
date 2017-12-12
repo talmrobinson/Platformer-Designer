@@ -74,7 +74,8 @@ function draw() {
   drawSprites();
   
   if (frameCount%240==0)
-    console.log(spr.position.x/block + ', ' + spr.position.y/block);
+    console.log( "char position:"+spr.position.x/block + ', ' + spr.position.y/block);
+    console.log( "mouse position:"+Math.floor((mouseX-camera.position.x)/block) +' '+ Math.floor((mouseY-camera.position.y)/block) );
 }
 
 function keyInput() {
@@ -105,7 +106,7 @@ function keyInput() {
 
 function moveCamera() {
   camera.position.x -= (camera.position.x - spr.position.x)*.08 ;
-  camera.position.y -= (camera.position.y - spr.position.y+block*3)*.08 ;
+  camera.position.y -= (camera.position.y - spr.position.y)*.08 ;
 }
 
 function imageToMap(myImg,myMap){
