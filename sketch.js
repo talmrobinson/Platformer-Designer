@@ -64,10 +64,12 @@ function draw() {
   }
   
   if (mouseWentUp(LEFT)){
-    console.log( "mouse position:" + worldMouseX() +', '+ worldMouseY() );
-    console.log(  +1+worldMouseX()-drawX+", "+1+worldMouseY()-drawY);
-    var temp = createPlatform(drawX, drawY, 1+worldMouseX()-drawX, 1+worldMouseY()-drawY, squareGroundImg);
-    ground.add( temp );
+    //console.log( "mouse position:" + worldMouseX() +', '+ worldMouseY() );
+    //console.log(  (1+worldMouseX()-drawX) +", "+ (1+worldMouseY()-drawY) );
+    var temp = createPlatform(drawX, drawY, (1+worldMouseX()-drawX), (1+worldMouseY()-drawY), squareGroundImg);
+    temp.setCollider("rectangle", 0, 0, temp.width, temp.height );
+
+    temp.addToGroup(ground);
   }
   
   if (spr.collide(ground) && spr.touching.bottom){
