@@ -27,6 +27,7 @@ function setup() {
   spr.shapeColor = color(255);
   spr.friction = 0.1;
   //spr.limitSpeed(10);
+  //bgMusic.play();
 }
 
 function draw() {
