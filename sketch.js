@@ -2,6 +2,7 @@ window.addEventListener("contextmenu", function(e) { e.preventDefault(); });
 
 var block = 32;
 var ground;
+var ladders;
 var spr;
 var squareGroundImg;
 var landed = false;
@@ -31,8 +32,9 @@ function setup() {
   cnv.parent('sketch-holder');
   
   ground = new Group();
-  
   ground.add( createPlatform(0,1,1,1, squareGroundImg) );
+  
+  ladders = new Group();
   
   spr = createSprite(0.5*block, 0, block, block*2);
   spr.shapeColor = color(255);
@@ -106,6 +108,18 @@ function moveCamera() {
 }
 
 function createPlatform(x,y,w,h,img) {
+  var temp  = createSprite(x*block +w*block/2, y*block +h*block/2, w*block, h*block);
+  temp.draw = function() {
+    for (var i =0; i<h; i++){
+      for (var j =0; j<w; j++){  
+        image(img,j*block -w*block/2 +block/2,i*block -h*block/2 +block/2,block,block);
+      }
+    }
+  }
+  return temp
+}
+
+function createLadder(x,y,w,h,img) {
   var temp  = createSprite(x*block +w*block/2, y*block +h*block/2, w*block, h*block);
   temp.draw = function() {
     for (var i =0; i<h; i++){
