@@ -5,6 +5,7 @@ var ground;
 var ladders;
 var spr;
 var squareGroundImg;
+var ladderImg;
 var landed = false;
 var bgMusic;
 var jumpSound;
@@ -16,6 +17,7 @@ var drawY;
 
 function preload() {
   squareGroundImg= loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fsquareground2.png?1513061116416');
+  ladderImg= loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fladder.png?1513120412634');
   standingImage = loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fstand.png?1513060104302');
   walkingAnimation = loadAnimation("https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fwalk1.png?1513055412898",
                                    "https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fwalk2.png?1513055413022",
@@ -35,6 +37,7 @@ function setup() {
   ground.add( createPlatform(0,1,1,1, squareGroundImg) );
   
   ladders = new Group();
+  ladders.add(createLadder(6,6,1, ladderImg));
   
   spr = createSprite(0.5*block, 0, block, block*2);
   spr.shapeColor = color(255);
@@ -89,6 +92,11 @@ function keyInput() {
     if (landed == true)
       spr.changeAnimation("walking");
   }
+  if (keyDown('w')){
+    spr.velocity.x += .5;
+    spr.mirrorX(1);
+      spr.changeAnimation("standing");
+  }
   if (keyDown(' ')){
     if (landed){
       spr.velocity.y = -16;
@@ -119,13 +127,11 @@ function createPlatform(x,y,w,h,img) {
   return temp
 }
 
-function createLadder(x,y,w,h,img) {
-  var temp  = createSprite(x*block +w*block/2, y*block +h*block/2, w*block, h*block);
+function createLadder(x,y,h,img) {
+  var temp  = createSprite(x*block +block/2, y*block +h*block/2, block, h*block);
   temp.draw = function() {
     for (var i =0; i<h; i++){
-      for (var j =0; j<w; j++){  
-        image(img,j*block -w*block/2 +block/2,i*block -h*block/2 +block/2,block,block);
-      }
+      image(img, 0,i*block -h*block/2 +block/2,block,block);
     }
   }
   return temp
