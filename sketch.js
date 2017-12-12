@@ -56,22 +56,6 @@ function draw() {
   
   spr.addSpeed(1.2, 90);
   
-  if (mouseWentDown(LEFT)){
-    //console.log( "char position:"+spr.position.x/block + ', ' + spr.position.y/block);
-    console.log( "mouse position:" + worldMouseX() +', '+ worldMouseY() );
-    drawX = worldMouseX();
-    drawY = worldMouseY();
-  }
-  
-  if (mouseWentUp(LEFT)){
-    //console.log( "mouse position:" + worldMouseX() +', '+ worldMouseY() );
-    //console.log(  (1+worldMouseX()-drawX) +", "+ (1+worldMouseY()-drawY) );
-    var temp = createPlatform(drawX, drawY, (1+worldMouseX()-drawX), (1+worldMouseY()-drawY), squareGroundImg);
-    temp.setCollider("rectangle", 0, 0, temp.width, temp.height );
-
-    temp.addToGroup(ground);
-  }
-  
   if (spr.collide(ground) && spr.touching.bottom){
     spr.velocity.y = 0;
     if (!landed) //camera shake thump effect
@@ -89,10 +73,7 @@ function draw() {
   moveCamera();
   drawSprites();
   
-  
-  noFill();
-  rect(worldMouseX()*block, worldMouseY()*block, block, block);
-  
+  editor(true);
 }
 
 function keyInput() {
@@ -126,20 +107,6 @@ function moveCamera() {
   camera.position.y -= (camera.position.y - spr.position.y)*.08 ;
 }
 
-function imageToMap(myImg,myMap){
-  for (var i =0; i<myImg.height; i++){
-    for (var j =0; j<myImg.width; j++){
-      if (myImg.get(j,i)[3] == 255 ){
-        var temp  = createSprite(j*block +block/2, i*block +block/2, block, block);
-        temp.draw = function() { image(squareGroundImg,0,0,block,block) }
-        //temp.visible = false;
-        myMap.add(temp);
-      }   
-    }
-  }
-}
-
-
 function createPlatform(x,y,w,h,img) {
   var temp  = createSprite(x*block +w*block/2, y*block +h*block/2, w*block, h*block);
   temp.draw = function() {
@@ -158,4 +125,27 @@ function worldMouseX() {
 
 function worldMouseY() {
   return Math.floor((mouseY-height/2+camera.position.y)/block);
+}
+
+function editor(editorMode) {
+  if (!editorMode)
+    return
+  
+  noFill();
+  stroke('rgb(0,255,0)');
+  rect(worldMouseX()*block, worldMouseY()*block, block, block);
+  
+  if (mouseWentDown(LEFT)){
+    console.log( "mouse position:" + worldMouseX() +', '+ worldMouseY() );
+    drawX = worldMouseX();
+    drawY = worldMouseY();
+  }
+  
+  if (mouseWentUp(LEFT)){
+    var temp = createPlatform(drawX, drawY, (1+worldMouseX()-drawX), (1+worldMouseY()-drawY), squareGroundImg);
+    temp.setCollider("rectangle", 0, 0, temp.width, temp.height );
+
+    temp.addToGroup(ground);
+  }
+  
 }
