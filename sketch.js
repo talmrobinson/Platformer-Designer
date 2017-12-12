@@ -1,6 +1,6 @@
 window.addEventListener("contextmenu", function(e) { e.preventDefault(); });
 
-var block = 64;
+var block = 32;
 var ground;
 var spr;
 var squareGroundImg;
@@ -48,6 +48,7 @@ function setup() {
   spr.addAnimation( "standing", standingImage);
   spr.width = block;
   spr.height = block*2;
+  //spr.scale = 2;
   //spr.limitSpeed(10);
   //bgMusic.play();
 }
