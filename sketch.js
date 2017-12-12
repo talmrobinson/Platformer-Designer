@@ -7,6 +7,7 @@ var spr;
 var squareGroundImg;
 var ladderImg;
 var landed = false;
+var climbing = false;
 var bgMusic;
 var jumpSound;
 var walkingAnimation;
@@ -57,7 +58,8 @@ function draw() {
   noSmooth();
   background(0,0,0);
   
-  spr.addSpeed(1.2, 90);
+  if (!climbing)
+    spr.addSpeed(1.2, 90);
   
   if (spr.collide(ground) && spr.touching.bottom){
     spr.velocity.y = 0;
@@ -93,9 +95,11 @@ function keyInput() {
       spr.changeAnimation("walking");
   }
   if (keyDown('w')){
-    spr.velocity.x += .5;
-    spr.mirrorX(1);
+    if (spr.overlap(ladders, function(s,l){s.position.x = l.position.x }) ){
+      spr.velocity.y -= .5;
       spr.changeAnimation("standing");
+      climbing = true;
+    }
   }
   if (keyDown(' ')){
     if (landed){
