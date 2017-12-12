@@ -18,7 +18,9 @@ function setup() {
   ground = new Group();
   //imageToMap(level, ground);
   
-  ground.add( createPlatform(-8,32,16,16, squareGroundImg) );
+  var temp = createPlatform(0,4,2,4, squareGroundImg);
+  
+  ground.add( temp );
   
   spr = createSprite(32, 32, block, block);
   spr.shapeColor = color(255);
@@ -54,7 +56,7 @@ function keyInput() {
       spr.velocity.y = -16;
     }
     else if (spr.velocity.y < 0){
-      spr.velocity.y -=1;
+      spr.velocity.y -=2;
     }
     
     landed = false;
