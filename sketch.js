@@ -89,16 +89,20 @@ function draw() {
   moveCamera();
   drawSprites();
   
+  
+  noFill();
+  rect(worldMouseX()*block, worldMouseY()*block, block, block);
+  
 }
 
 function keyInput() {
-  if (keyDown(LEFT_ARROW)){
+  if (keyDown('a')){
     spr.velocity.x += -.5;
     spr.mirrorX(-1);
     if (landed == true)
       spr.changeAnimation("walking");
   }
-  if (keyDown(RIGHT_ARROW)){
+  if (keyDown('d')){
     spr.velocity.x += .5;
     spr.mirrorX(1);
     if (landed == true)
