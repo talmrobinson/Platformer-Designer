@@ -37,6 +37,7 @@ function setup() {
   spr.friction = 0.1;
   spr.addAnimation( "walking", walkingAnimation);
   spr.addAnimation( "jumping", walkingAnimation.getImageAt(0));
+  spr.addAnimation( "sliding", walkingAnimation.getImageAt(4));
   spr.width = block;
   spr.height = block*2;
   //spr.limitSpeed(10);
@@ -56,8 +57,9 @@ function draw() {
       camera.position.y-=5; //camera shake thump effect
     
     landed = true;
-  } 
+  }
   
+  spr.changeAnimation("sliding");
   keyInput();
   moveCamera();
   drawSprites();
