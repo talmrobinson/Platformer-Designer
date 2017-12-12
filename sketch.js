@@ -35,6 +35,10 @@ function draw() {
   
   if (spr.collide(ground) && spr.touching.bottom){
     spr.velocity.y = 0;
+    
+    if (!landed) //camera shake thump effect
+      camera.position.y-=5; //camera shake thump effect
+    
     landed = true;
   } 
   
