@@ -105,14 +105,14 @@ function keyInput() {
       spr.changeAnimation("walking");
   }
   if (keyDown('w')){
-    if (spr.overlap(ladders, function(s,l){s.position.x = l.position.x }) ){
+    if (spr.overlap(ladders, function(s,l){s.position.x -= (s.position.x-l.position.x)*.2 }) ){
       spr.position.y-=4 ;
       spr.changeAnimation("standing");
       climbing = true;
     }
   }
   if (keyDown('s')){
-    if (spr.overlap(ladders, function(s,l){s.position.x = l.position.x }) ){
+    if (spr.overlap(ladders, function(s,l){s.position.x -= (s.position.x-l.position.x)*.2 }) ){
       spr.position.y+=4 ;
       spr.changeAnimation("standing");
       climbing = true;
