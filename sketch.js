@@ -112,27 +112,27 @@ function keyInput() {
     spr.mirrorX(1);
     if (landed == true){
       spr.changeAnimation("walking");
-      if(frameCount%6==0)
+      if(frameCount%12==0)
         stepSound.play();
     }
   }
   if (keyDown('w')){
-    if (spr.overlap(ladders, function(s,l){s.position.x -= (s.position.x-l.position.x)*.2 }) ){
+    if (spr.overlap(ladders, function(s,l){s.position.x -= (s.position.x-l.position.x)*.5 }) ){
       spr.position.y-=4 ;
       spr.changeAnimation("standing");
       climbing = true;
       
-      if(frameCount%6==0)
+      if(frameCount%12==0)
         stepSound.play();
     }
   }
   if (keyDown('s')){
-    if (spr.overlap(ladders, function(s,l){s.position.x -= (s.position.x-l.position.x)*.2 }) ){
+    if (spr.overlap(ladders, function(s,l){s.position.x -= (s.position.x-l.position.x)*.5 }) ){
       spr.position.y+=4 ;
       spr.changeAnimation("standing");
       climbing = true;
       
-      if(frameCount%6==0)
+      if(frameCount%12==0)
         stepSound.play();
     }
   }
