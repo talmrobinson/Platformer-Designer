@@ -12,6 +12,7 @@ var bgMusic;
 var jumpSound;
 var stepSound;
 var walkingAnimation;
+var climbingAnimation;
 var standingImage;
 var drawX;
 var drawY;
@@ -28,6 +29,8 @@ function preload() {
                                    "https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fwalk4.png?1513055412820",
                                    "https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fwalk5.png?1513055413007",
                                    "https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fwalk6.png?1513055412874");
+  climbingAnimation = loadAnimation("https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fclimb1.png?1513137010206",
+                                    "https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fclimb2.png?1513137010290");
   bgMusic = loadSound('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fmusic1.mp3?1513044930321');
   jumpSound = loadSound('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fjump.mp3?1513045615069');
   jumpSound.setVolume(0.5);
@@ -52,6 +55,7 @@ function setup() {
   spr.addAnimation( "jumping", walkingAnimation.getImageAt(0));
   spr.addAnimation( "sliding", walkingAnimation.getImageAt(4));
   spr.addAnimation( "standing", standingImage);
+  spr.addAnimation( "climbing", climbingAnimation);
   spr.width = block;
   spr.height = block*2;
   //spr.scale = 2;
@@ -120,7 +124,7 @@ function keyInput() {
   if (keyDown('w')){
     if (spr.overlap(ladders, function(s,l){s.position.x -= (s.position.x-l.position.x)*.5 }) ){
       spr.position.y-=4 ;
-      spr.changeAnimation("standing");
+      spr.changeAnimation("climbing");
       climbing = true;
       
       if(frameCount%12==0)
@@ -130,7 +134,7 @@ function keyInput() {
   if (keyDown('s')){
     if (spr.overlap(ladders, function(s,l){s.position.x -= (s.position.x-l.position.x)*.5 }) ){
       spr.position.y+=4 ;
-      spr.changeAnimation("standing");
+      spr.changeAnimation("climbing");
       climbing = true;
       
       if(frameCount%12==0)
