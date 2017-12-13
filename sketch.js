@@ -73,6 +73,9 @@ function draw() {
     if (!landed) //camera shake thump effect
       camera.position.y-=5; //camera shake thump effect
     landed = true;
+    
+    if (climbing)
+      climbing = false;
   }
   
   if ( Math.floor(Math.abs(spr.velocity.x)) <1 && landed == true){
@@ -134,8 +137,8 @@ function keyInput() {
 }
 
 function moveCamera() {
-  camera.position.x -= (camera.position.x - spr.position.x)*.1 ;
-  camera.position.y -= (camera.position.y - spr.position.y)*.1 ;
+  camera.position.x -= (camera.position.x - spr.position.x)*.5 ;
+  camera.position.y -= (camera.position.y - spr.position.y)*.5 ;
 }
 
 function createPlatform(x,y,w,h,img) {
