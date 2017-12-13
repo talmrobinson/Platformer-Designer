@@ -47,23 +47,11 @@ function setup() {
   cnv.parent('sketch-holder');
   
   ground = new Group();
-  ground.add( createPlatform(0,2,1,1, squareGroundImg) );
-  
   ladders = new Group();
-  ladders.add(createLadder(6,6,10, ladderImg));
-  
   hero = new Group();
-  spr = createSprite(0.5*block, 0, block, block*2);
-  spr.shapeColor = color(255);
-  spr.friction = 0.1;
-  spr.addAnimation( "walking", walkingAnimation);
-  spr.addAnimation( "jumping", walkingAnimation.getImageAt(0));
-  spr.addAnimation( "sliding", walkingAnimation.getImageAt(4));
-  spr.addAnimation( "standing", standingImage);
-  spr.addAnimation( "climbing", climbingAnimation);
-  spr.width = block;
-  spr.height = block*2;
-  hero.add(spr);
+  
+  loadLevel();
+  loadHero();
   //spr.scale = 2;
   //spr.limitSpeed(10);
   //bgMusic.play();
@@ -324,12 +312,38 @@ function editLadder() {
 
 function printMap() {
   var temp = "";
+  temp +="//platforms\n";
   for(var i =0; i<ground.length;i++){
     var x = (ground[i].position.x-ground[i]._internalWidth/2)/block;
     var y = (ground[i].position.y-ground[i]._internalHeight/2)/block;
-    var w = ground[i]._internalHeight/block;
-    var h = ground[i]._internalWidth/block;
-    temp += "ground.add( createPlatform("+ (x) +","+ (y) +","+ w +","+ h +", squareGroundImg) );\n";
+    var w = ground[i]._internalWidth/block;
+    var h = ground[i]._internalHeight/block;
+    temp += "ground.add( createPlatform("+ x +","+ y +","+ w +","+ h +", squareGroundImg) );\n";
   }
   console.log(temp);
+}
+
+function loadLevel() {
+  //platforms
+  ground.add( createPlatform(0,2,1,1, squareGroundImg) );
+  ground.add( createPlatform(1,-4,1,7, squareGroundImg) );
+  ground.add( createPlatform(-1,-4,1,7, squareGroundImg) );
+  ground.add( createPlatform(-4,3,9,1, squareGroundImg) );
+  ground.add( createPlatform(0,4,1,1, squareGroundImg) );
+  //ladders
+  ladders.add(createLadder(0,-10,7, ladderImg));
+}
+
+function loadHero() {
+  spr = createSprite(0.5*block, 0, block, block*2);
+  spr.shapeColor = color(255);
+  spr.friction = 0.1;
+  spr.addAnimation( "walking", walkingAnimation);
+  spr.addAnimation( "jumping", walkingAnimation.getImageAt(0));
+  spr.addAnimation( "sliding", walkingAnimation.getImageAt(4));
+  spr.addAnimation( "standing", standingImage);
+  spr.addAnimation( "climbing", climbingAnimation);
+  spr.width = block;
+  spr.height = block*2;
+  hero.add(spr);
 }
