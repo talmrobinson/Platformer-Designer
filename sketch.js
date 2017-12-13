@@ -17,6 +17,7 @@ var standingImage;
 var drawX;
 var drawY;
 var canClimbJumpAgain = true;
+var editMode = "platform";
 
 
 function preload() {
@@ -46,27 +47,6 @@ function setup() {
   
   ground = new Group();
   ground.add( createPlatform(0,2,1,1, squareGroundImg) );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
   ladders = new Group();
   ladders.add(createLadder(6,6,10, ladderImg));
@@ -122,7 +102,7 @@ function draw() {
   moveCamera();
   drawSprites();
   
-  editor(true);
+  editor(editMode);
 }
 
 function keyInput() {
@@ -180,6 +160,13 @@ function keyInput() {
     spr.changeImage("jumping");
     landed = false;
   }
+  
+  //editor mode toggle
+   if (keyWentUp('1'))
+     editMode = 'platform';
+  
+   if (keyWentUp('2'))
+     editMode = 'ladder';
 }
 
 function moveCamera() {
@@ -252,8 +239,9 @@ function editor(editorMode) {
   if (mouseDown(LEFT)){
     var x = Math.min(worldMouseX(),drawX);
     var y = Math.min(worldMouseY(),drawY);
-    var w = 1+ Math.abs(worldMouseX()-drawX);
+    var w = (editMode == 'platform') ? 1+Math.abs(worldMouseX()-drawX) : ;
     var h = 1+ Math.abs(worldMouseY()-drawY);
+    
     rect(x*block, y*block, w*block, h*block);
   }
   else
