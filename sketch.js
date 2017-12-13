@@ -100,7 +100,9 @@ function draw() {
   
   keyInput();
   moveCamera();
-  drawSprites();
+  ground.draw();
+  ladders.draw();
+  spr.draw();
   
   editor(editMode);
 }
@@ -231,7 +233,7 @@ function editor(editorMode) {
     editPlatform();
   
   if (editorMode == 'ladder')
-    editladder();
+    editLadder();
   
   if (keyWentUp('p')){
     printMap();
@@ -278,7 +280,43 @@ function editPlatform() {
   }
 }
 
+function editLadder() {
+  noFill();
+  stroke('rgb(255,0,0)');
+  
+  if (mouseWentDown(LEFT)){
+    console.log( "mouse position:" + worldMouseX() +', '+ worldMouseY() );
+    drawX = worldMouseX();
+    drawY = worldMouseY();
+  }
+  
+  if (mouseDown(LEFT)){
+    var x = drawX;
+    var y = Math.min(worldMouseY(),drawY);
+    var h = 1+ Math.abs(worldMouseY()-drawY);
+    
+    rect(x*block, y*block, block, h*block);
+  }
+  else
+    rect(worldMouseX()*block, worldMouseY()*block, block, block);
+  
+  if (mouseWentUp(LEFT)){
+    var x = drawX;
+    var y = Math.min(worldMouseY(),drawY);
+    var h = 1+ Math.abs(worldMouseY()-drawY);
+    var temp = createLadder(x, y, h, ladderImg);
+    temp.setCollider("rectangle", 0, 0, temp.width, temp.height );
 
+    temp.addToGroup(ladders);
+  }
+  
+  if (mouseWentUp(RIGHT)){
+    console.log( "right click:" + worldMouseX() +', '+ worldMouseY() );
+    var temp = createSprite(worldMouseX()*block +block/2, worldMouseY()*block +block/2, 1, 1);
+    ladders.overlap( temp, removeSprite);
+    temp.remove();
+  }
+}
 
 
 function printMap() {
