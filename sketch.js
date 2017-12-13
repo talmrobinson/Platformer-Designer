@@ -68,7 +68,7 @@ function draw() {
     
     
   
-  if (spr.collide(ground)){
+  if (spr.collide(ground) && spr.touching.bottom){
     spr.velocity.y = 0;
     if (!landed) //camera shake thump effect
       camera.position.y-=5; //camera shake thump effect
@@ -107,6 +107,13 @@ function keyInput() {
   if (keyDown('w')){
     if (spr.overlap(ladders, function(s,l){s.position.x = l.position.x }) ){
       spr.position.y-=4 ;
+      spr.changeAnimation("standing");
+      climbing = true;
+    }
+  }
+  if (keyDown('s')){
+    if (spr.overlap(ladders, function(s,l){s.position.x = l.position.x }) ){
+      spr.position.y+=4 ;
       spr.changeAnimation("standing");
       climbing = true;
     }
