@@ -43,7 +43,7 @@ function preload() {
 }
 
 function setup() {
-  var cnv = createCanvas(768,576);
+  var cnv = createCanvas(512,480);
   cnv.parent('sketch-holder');
   
   ground = new Group();
