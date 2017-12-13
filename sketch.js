@@ -169,7 +169,7 @@ function moveCamera() {
 function createPlatform(x,y,w,h,img) {
   var temp  = createSprite(x*block +w*block/2, y*block +h*block/2, w*block, h*block);
   
-  if ( w <= 3 && h <= 3){
+  if ( w <= 3 || h <= 3){
     temp.draw = function() {
       for (var i =0; i<h; i++){
         for (var j =0; j<w; j++){  
@@ -179,7 +179,7 @@ function createPlatform(x,y,w,h,img) {
     }
   }else{
     temp.draw = function() {
-        image(img,block/2 -w*block/2, block/2 -h*block/2,block*w,block*h);
+        image(img, 0, 0, block*w,block*h);
     }
   }
   return temp
