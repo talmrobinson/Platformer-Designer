@@ -4,6 +4,7 @@ var block = 32;
 var ground;
 var ladders;
 var spr;
+var hero;
 var squareGroundImg;
 var ladderImg;
 var landed = false;
@@ -51,6 +52,7 @@ function setup() {
   ladders = new Group();
   ladders.add(createLadder(6,6,10, ladderImg));
   
+  hero = new Group();
   spr = createSprite(0.5*block, 0, block, block*2);
   spr.shapeColor = color(255);
   spr.friction = 0.1;
@@ -61,6 +63,7 @@ function setup() {
   spr.addAnimation( "climbing", climbingAnimation);
   spr.width = block;
   spr.height = block*2;
+  hero.add(spr);
   //spr.scale = 2;
   //spr.limitSpeed(10);
   //bgMusic.play();
@@ -79,7 +82,7 @@ function draw() {
     
     
   
-  if (spr.collide(ground) && spr.touching.bottom){
+  if ( spr.collide(ground) && spr.touching.bottom){
     if (!landed){
       stepSound.play();
       camera.position.y-=5; //camera shake thump effect
@@ -102,7 +105,7 @@ function draw() {
   moveCamera();
   ground.draw();
   ladders.draw();
-  spr.draw();
+  hero.draw();
   
   editor(editMode);
 }
