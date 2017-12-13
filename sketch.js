@@ -38,7 +38,7 @@ function setup() {
   ground.add( createPlatform(0,1,1,1, squareGroundImg) );
   
   ladders = new Group();
-  ladders.add(createLadder(6,6,1, ladderImg));
+  ladders.add(createLadder(6,6,10, ladderImg));
   
   spr = createSprite(0.5*block, 0, block, block*2);
   spr.shapeColor = color(255);
@@ -88,13 +88,13 @@ function draw() {
 }
 
 function keyInput() {
-  if (keyDown('a')){
+  if (keyDown('a') && !climbing){
     spr.velocity.x += -.5;
     spr.mirrorX(-1);
     if (landed == true)
       spr.changeAnimation("walking");
   }
-  if (keyDown('d')){
+  if (keyDown('d') && !climbing){
     spr.velocity.x += .5;
     spr.mirrorX(1);
     if (landed == true)
@@ -102,15 +102,16 @@ function keyInput() {
   }
   if (keyDown('w')){
     if (spr.overlap(ladders, function(s,l){s.position.x = l.position.x }) ){
-      spr.position.y-=2 ;
+      spr.position.y-=4 ;
       spr.changeAnimation("standing");
       climbing = true;
     }
   }
   if (keyDown(' ')){
-    if (landed){
+    if (landed || climbing){
       spr.velocity.y = -16;
       jumpSound.play();
+      climbing = false;
     }
     else if (spr.velocity.y < 0){
       spr.velocity.y -=1;
