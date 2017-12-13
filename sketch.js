@@ -227,6 +227,18 @@ function editor(editorMode) {
   if (!editorMode)
     return
   
+  if (editorMode == 'platform')
+    editPlatform();
+  
+  if (editorMode == 'ladder')
+    editladder();
+  
+  if (keyWentUp('p')){
+    printMap();
+  }
+}
+
+function editPlatform() {
   noFill();
   stroke('rgb(0,255,0)');
   
@@ -239,7 +251,7 @@ function editor(editorMode) {
   if (mouseDown(LEFT)){
     var x = Math.min(worldMouseX(),drawX);
     var y = Math.min(worldMouseY(),drawY);
-    var w = (editMode == 'platform') ? 1+Math.abs(worldMouseX()-drawX) : ;
+    var w = 1+ Math.abs(worldMouseX()-drawX);
     var h = 1+ Math.abs(worldMouseY()-drawY);
     
     rect(x*block, y*block, w*block, h*block);
@@ -264,11 +276,9 @@ function editor(editorMode) {
     ground.overlap( temp, removeSprite);
     temp.remove();
   }
-  
-  if (keyWentUp('p')){
-    printMap();
-  }
 }
+
+
 
 
 function printMap() {
