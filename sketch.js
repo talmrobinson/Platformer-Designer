@@ -14,6 +14,7 @@ var walkingAnimation;
 var standingImage;
 var drawX;
 var drawY;
+var canClimbJumpAgain = true;
 
 
 function preload() {
@@ -88,6 +89,9 @@ function draw() {
 }
 
 function keyInput() {
+  if (keyWentUp(' '))
+    canClimbJumpAgain = true;
+  
   if (keyDown('a') && !climbing){
     spr.velocity.x += -.5;
     spr.mirrorX(-1);
@@ -108,12 +112,13 @@ function keyInput() {
     }
   }
   if (keyDown(' ')){
-    if (landed || climbing){
+    if (landed || (climbing && canClimbJumpAgain)) {
       spr.velocity.y = -16;
       jumpSound.play();
       climbing = false;
+      canClimbJumpAgain = false;
     }
-    else if (spr.velocity.y < 0){
+    else if (spr.velocity.y < 0 && !climbing){
       spr.velocity.y -=1;
     }
     spr.changeImage("jumping");
