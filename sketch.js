@@ -134,8 +134,8 @@ function keyInput() {
 }
 
 function moveCamera() {
-  camera.position.x -= (camera.position.x - spr.position.x)*.08 ;
-  camera.position.y -= (camera.position.y - spr.position.y)*.08 ;
+  camera.position.x -= (camera.position.x - spr.position.x)*.1 ;
+  camera.position.y -= (camera.position.y - spr.position.y)*.1 ;
 }
 
 function createPlatform(x,y,w,h,img) {
