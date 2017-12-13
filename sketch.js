@@ -179,7 +179,10 @@ function createPlatform(x,y,w,h,img) {
     }
   }else{
     temp.draw = function() {
-        image(img, 0, 0, block*w,block*h);
+        noStroke();
+        fill( color(124));
+        rect(0,0, block*w, block*h);
+        //image(img, 0, 0, block*w,block*h);
     }
   }
   return temp
