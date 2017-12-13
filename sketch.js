@@ -320,6 +320,14 @@ function printMap() {
     var h = ground[i]._internalHeight/block;
     temp += "ground.add( createPlatform("+ x +","+ y +","+ w +","+ h +", squareGroundImg) );\n";
   }
+  
+  temp +="//ladders\n";
+  for(var i =0; i<ladders.length;i++){
+    var x = (ladders[i].position.x-ladders[i]._internalWidth/2)/block;
+    var y = (ladders[i].position.y-ladders[i]._internalHeight/2)/block;
+    var h = ladders[i]._internalHeight/block;
+    temp += "ladders.add( createLadder("+ x +","+ y +","+ h +", ladderImg) );\n";
+  }
   console.log(temp);
 }
 
@@ -331,7 +339,7 @@ function loadLevel() {
   ground.add( createPlatform(-4,3,9,1, squareGroundImg) );
   ground.add( createPlatform(0,4,1,1, squareGroundImg) );
   //ladders
-  ladders.add(createLadder(0,-10,7, ladderImg));
+  ladders.add( createLadder(0,-8,6, ladderImg) );
 }
 
 function loadHero() {
