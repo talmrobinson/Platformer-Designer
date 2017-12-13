@@ -79,13 +79,16 @@ function draw() {
     
   
   if (spr.collide(ground) && spr.touching.bottom){
-    spr.velocity.y = 0;
-    if (!landed) //camera shake thump effect
+    if (!landed){
+      stepSound.play();
       camera.position.y-=5; //camera shake thump effect
-    landed = true;
+    }
     
     if (climbing)
       climbing = false;
+    
+    spr.velocity.y = 0;
+    landed = true;
   }
   
   if ( Math.floor(Math.abs(spr.velocity.x)) <1 && landed == true){
@@ -165,11 +168,18 @@ function moveCamera() {
 
 function createPlatform(x,y,w,h,img) {
   var temp  = createSprite(x*block +w*block/2, y*block +h*block/2, w*block, h*block);
-  temp.draw = function() {
-    for (var i =0; i<h; i++){
-      for (var j =0; j<w; j++){  
-        image(img,j*block -w*block/2 +block/2,i*block -h*block/2 +block/2,block,block);
+  
+  if ( w <= 3 && h <= 3){
+    temp.draw = function() {
+      for (var i =0; i<h; i++){
+        for (var j =0; j<w; j++){  
+          image(img,j*block -w*block/2 +block/2,i*block -h*block/2 +block/2,block,block);
+        }
       }
+    }
+  }else{
+    temp.draw = function() {
+        image(img,block/2 -w*block/2, block/2 -h*block/2,block*w,block*h);
     }
   }
   return temp
