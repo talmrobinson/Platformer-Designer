@@ -10,6 +10,7 @@ var landed = false;
 var climbing = false;
 var bgMusic;
 var jumpSound;
+var stepSound;
 var walkingAnimation;
 var standingImage;
 var drawX;
@@ -29,6 +30,8 @@ function preload() {
                                    "https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fwalk6.png?1513055412874");
   bgMusic = loadSound('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fmusic1.mp3?1513044930321');
   jumpSound = loadSound('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fjump.mp3?1513045615069');
+  stepSound = loadSound('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fstep.mp3?1513133237482');
+  stepSound.setVolume(0.1);
 }
 
 function setup() {
@@ -98,20 +101,29 @@ function keyInput() {
   if (keyDown('a') && !climbing){
     spr.velocity.x += -.5;
     spr.mirrorX(-1);
-    if (landed == true)
+    if (landed == true){
       spr.changeAnimation("walking");
+      if(frameCount%12==0)
+        stepSound.play();
+    }
   }
   if (keyDown('d') && !climbing){
     spr.velocity.x += .5;
     spr.mirrorX(1);
-    if (landed == true)
+    if (landed == true){
       spr.changeAnimation("walking");
+      if(frameCount%6==0)
+        stepSound.play();
+    }
   }
   if (keyDown('w')){
     if (spr.overlap(ladders, function(s,l){s.position.x -= (s.position.x-l.position.x)*.2 }) ){
       spr.position.y-=4 ;
       spr.changeAnimation("standing");
       climbing = true;
+      
+      if(frameCount%6==0)
+        stepSound.play();
     }
   }
   if (keyDown('s')){
@@ -119,6 +131,9 @@ function keyInput() {
       spr.position.y+=4 ;
       spr.changeAnimation("standing");
       climbing = true;
+      
+      if(frameCount%6==0)
+        stepSound.play();
     }
   }
   if (keyDown(' ')){
