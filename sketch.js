@@ -45,7 +45,28 @@ function setup() {
   cnv.parent('sketch-holder');
   
   ground = new Group();
-  ground.add( createPlatform(0,1,1,1, squareGroundImg) );
+  ground.add( createPlatform(10.5,9.5,7,1, squareGroundImg) );
+ground.add( createPlatform(7,39,4,5, squareGroundImg) );
+ground.add( createPlatform(4,34,4,3, squareGroundImg) );
+ground.add( createPlatform(9.5,34.5,4,2, squareGroundImg) );
+ground.add( createPlatform(5.5,31.5,5,1, squareGroundImg) );
+ground.add( createPlatform(10,29,4,1, squareGroundImg) );
+ground.add( createPlatform(6.5,26.5,3,1, squareGroundImg) );
+ground.add( createPlatform(10,24,3,2, squareGroundImg) );
+ground.add( createPlatform(5.5,21.5,3,1, squareGroundImg) );
+ground.add( createPlatform(9,4,2,1, squareGroundImg) );
+ground.add( createPlatform(0.5,3.5,4,4, squareGroundImg) );
+ground.add( createPlatform(-3.5,-0.5,4,4, squareGroundImg) );
+ground.add( createPlatform(-2.5,-2.5,1,1, squareGroundImg) );
+ground.add( createPlatform(-7.5,-3.5,4,4, squareGroundImg) );
+ground.add( createPlatform(-11.5,-6.5,4,4, squareGroundImg) );
+ground.add( createPlatform(1.5,3.5,1,1, squareGroundImg) );
+ground.add( createPlatform(4.5,6.5,4,4, squareGroundImg) );
+ground.add( createPlatform(4.5,6.5,1,1, squareGroundImg) );
+ground.add( createPlatform(5.5,6.5,1,1, squareGroundImg) );
+ground.add( createPlatform(-4.5,-8.5,3,1, squareGroundImg) );
+ground.add( createPlatform(5.5,-6.5,4,4, squareGroundImg) );
+ground.add( createPlatform(10.5,-9.5,5,1, squareGroundImg) );
   
   ladders = new Group();
   ladders.add(createLadder(6,6,10, ladderImg));
@@ -180,7 +201,7 @@ function createPlatform(x,y,w,h,img) {
   }else{
     temp.draw = function() {
         noStroke();
-        fill( color(124,124,124));
+        fill( color(124));
         rect(0,0, block*w, block*h);
         //image(img, 0, 0, block*w,block*h);
         
@@ -265,11 +286,12 @@ function editor(editorMode) {
 function printMap() {
   var temp = "";
   for(var i =0; i<ground.length;i++){
+    createSprite(x*block +w*block/2, y*block +h*block/2, w*block, h*block)
     var x = ground[i].position.x/block;
     var y = ground[i].position.y/block;
     var w = ground[i]._internalHeight/block;
     var h = ground[i]._internalWidth/block;
-    temp += "ground.add( createPlatform("+ (x-0.5) +","+ (y-0.5) +","+ w +","+ h +", squareGroundImg) );\n";
+    temp += "ground.add( createPlatform("+ (x) +","+ (y) +","+ w +","+ h +", squareGroundImg) );\n";
   }
   console.log(temp);
 }
