@@ -50,7 +50,7 @@ function setup() {
   ladders = new Group();
   hero = new Group();
   
-  loadLevel();
+  loadLevel1();
   loadHero();
   //spr.scale = 2;
   //spr.limitSpeed(10);
@@ -331,17 +331,6 @@ function printMap() {
   console.log(temp);
 }
 
-function loadLevel() {
-  //platforms
-  ground.add( createPlatform(0,2,1,1, squareGroundImg) );
-  ground.add( createPlatform(1,-4,1,7, squareGroundImg) );
-  ground.add( createPlatform(-1,-4,1,7, squareGroundImg) );
-  ground.add( createPlatform(-4,3,9,1, squareGroundImg) );
-  ground.add( createPlatform(0,4,1,1, squareGroundImg) );
-  //ladders
-  ladders.add( createLadder(0,-8,6, ladderImg) );
-}
-
 function loadHero() {
   spr = createSprite(0.5*block, 0, block, block*2);
   spr.shapeColor = color(255);
@@ -354,4 +343,30 @@ function loadHero() {
   spr.width = block;
   spr.height = block*2;
   hero.add(spr);
+}
+
+function loadLevel1() {
+  ground.clear();
+  //platforms
+  ground.add( createPlatform(0,2,1,1, squareGroundImg) );
+  ground.add( createPlatform(1,-4,1,7, squareGroundImg) );
+  ground.add( createPlatform(-1,-4,1,7, squareGroundImg) );
+  ground.add( createPlatform(-4,3,9,1, squareGroundImg) );
+  ground.add( createPlatform(0,4,1,1, squareGroundImg) );
+  //ladders
+  ladders.clear();
+  ladders.add( createLadder(0,-8,6, ladderImg) );
+}
+
+function loadLevel2() {
+  ground.clear();
+  //platforms
+  ground.add( createPlatform(0,2,1,1, squareGroundImg) );
+  ground.add( createPlatform(1,-4,1,7, squareGroundImg) );
+  ground.add( createPlatform(-1,-4,1,7, squareGroundImg) );
+  ground.add( createPlatform(-4,3,9,1, squareGroundImg) );
+  ground.add( createPlatform(0,4,1,1, squareGroundImg) );
+  //ladders
+  ladders.clear();
+  ladders.add( createLadder(0,-8,6, ladderImg) );
 }
