@@ -103,6 +103,7 @@ function keyInput() {
   if (keyWentUp(' '))
     canClimbJumpAgain = true;
   
+  
   if (keyDown('a') && !climbing){
     spr.velocity.x += -.5;
     spr.mirrorX(-1);
@@ -161,6 +162,12 @@ function keyInput() {
   
    if (keyWentUp('2'))
      editMode = 'ladder';
+  
+  //level change
+  if (keyWentUp(LEFT_ARROW))
+    loadlLevel['1.0']();
+  else if (keyWentUp(RIGHT_ARROW))
+    loadlLevel['1.1']();
 }
 
 function moveCamera() {
@@ -366,14 +373,38 @@ loadLevel['1.0'] = function() {
 loadLevel['1.1'] = function() {
   ground.clear();
   //platforms
-  ground.add( createPlatform(0,2,1,1, squareGroundImg) );
-  ground.add( createPlatform(1,-4,1,7, squareGroundImg) );
-  ground.add( createPlatform(-1,-4,1,7, squareGroundImg) );
-  ground.add( createPlatform(-4,3,9,1, squareGroundImg) );
-  ground.add( createPlatform(0,4,1,1, squareGroundImg) );
+  ground.add( createPlatform(8,-5,1,9, squareGroundImg) );
+  ground.add( createPlatform(-8,-5,1,9, squareGroundImg) );
+  ground.add( createPlatform(8,-15,1,10, squareGroundImg) );
+  ground.add( createPlatform(-8,-17,1,12, squareGroundImg) );
+  ground.add( createPlatform(-7,-8,7,1, squareGroundImg) );
+  ground.add( createPlatform(-6,-18,5,6, squareGroundImg) );
+  ground.add( createPlatform(-8,-27,1,10, squareGroundImg) );
+  ground.add( createPlatform(8,-30,1,15, squareGroundImg) );
+  ground.add( createPlatform(8,-39,1,9, squareGroundImg) );
+  ground.add( createPlatform(8,-41,1,2, squareGroundImg) );
+  ground.add( createPlatform(-8,-41,1,14, squareGroundImg) );
+  ground.add( createPlatform(-8,4,17,1, squareGroundImg) );
+  ground.add( createPlatform(-1,-18,2,1, squareGroundImg) );
+  ground.add( createPlatform(6,-18,2,1, squareGroundImg) );
+  ground.add( createPlatform(6,-34,1,2, squareGroundImg) );
+  ground.add( createPlatform(5,-33,1,2, squareGroundImg) );
+  ground.add( createPlatform(4,-32,1,2, squareGroundImg) );
+  ground.add( createPlatform(3,-31,1,1, squareGroundImg) );
+  ground.add( createPlatform(-7,-30,11,3, squareGroundImg) );
+  ground.add( createPlatform(-1,-17,1,1, squareGroundImg) );
+  ground.add( createPlatform(7,3,1,1, squareGroundImg) );
+  ground.add( createPlatform(-7,3,1,1, squareGroundImg) );
+  ground.add( createPlatform(7,2,1,1, squareGroundImg) );
+  ground.add( createPlatform(-7,2,1,1, squareGroundImg) );
+  ground.add( createPlatform(6,3,1,1, squareGroundImg) );
+  ground.add( createPlatform(-6,3,1,1, squareGroundImg) );
   //ladders
-  ladders.clear();
-  ladders.add( createLadder(0,-8,6, ladderImg) );
+  ladders.add( createLadder(0,-8,8, ladderImg) );
+  ladders.add( createLadder(0,-9,1, ladderImg) );
+  ladders.add( createLadder(-7,-18,6, ladderImg) );
+  ladders.add( createLadder(7,-27,5, ladderImg) );
+  ladders.add( createLadder(7,-35,8, ladderImg) );
   
   //hero
   spr.position.x = 0.5*block;
