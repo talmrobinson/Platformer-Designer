@@ -346,6 +346,18 @@ function printMap() {
     var h = ladders[i]._internalHeight/block;
     temp += "ladders.add( createLadder("+ x +","+ y +","+ h +", ladderImg) );\n";
   }
+  
+  temp +="//doors\n";
+  temp +="doors.clear();\n";
+  for(var i =0; i<doors.length;i++){
+    var x = (doors[i].position.x-doors[i]._internalWidth/2)/block;
+    var y = 1+ (doors[i].position.y-doors[i]._internalHeight/2)/block;
+    var destination = doors[i].destination;
+    var destX = doors[i].destinationX;
+    var destY = doors[i].destinationY;
+    temp += "doors.add( createDoor("+ x +","+ y +", \'"+ destination +"\',"+ destX +","+ destY +") );\n";
+  }
+  
   console.log(temp);
 }
 
