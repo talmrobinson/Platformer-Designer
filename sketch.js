@@ -23,7 +23,7 @@ var loadLevel = {};
 
 
 function preload() {
-  squareGroundImg= loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fsquareground2.png?1513061116416');
+  squareGroundImg= loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fgroundtexture.png?1513224979022');
   ladderImg= loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fladder.png?1513120412634');
   standingImage = loadImage('https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fstand.png?1513060104302');
   walkingAnimation = loadAnimation("https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fwalk1.png?1513055412898",
@@ -179,30 +179,8 @@ function moveCamera() {
 function createPlatform(x,y,w,h,img) {
   var temp  = createSprite(x*block +w*block/2, y*block +h*block/2, w*block, h*block);
   
-  if ( w < 3 || h < 3){
-    temp.draw = function() {
-      for (var i =0; i<h; i++){
-        for (var j =0; j<w; j++){  
-          image(img,j*block -w*block/2 +block/2,i*block -h*block/2 +block/2,block,block);
-        }
-      }
-    }
-  }else{
-    temp.draw = function() {
-        noStroke();
-        fill( color(124));
-        rect(0,0, block*w, block*h);
-        //image(img, 0, 0, block*w,block*h);
-        
-        for (var i =0; i<h; i++){
-          image(img,0 -w*block/2 +block/2,i*block -h*block/2 +block/2,block,block);
-          image(img,(w-1)*block -w*block/2 +block/2,i*block -h*block/2 +block/2,block,block);
-        }
-        for (var j =0; j<w; j++){
-          image(img,j*block -w*block/2 +block/2,0 -h*block/2 +block/2,block,block);
-          image(img,j*block -w*block/2 +block/2,(h-1)*block -h*block/2 +block/2,block,block);
-        }
-    }
+  temp.draw = function() {
+    image(img,0,0,w*block,h*block,0,0,w*16,h*16);
   }
   return temp
 }
