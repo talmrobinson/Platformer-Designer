@@ -137,7 +137,7 @@ function keyInput() {
     }
     
     //entering doors
-    if (spr.overlap(doors, function(s,d){ d.teleport() }) )
+    spr.overlap(doors, function(s,d){ d.teleport() });
   }
   if (keyDown('s')){
     //climbing
@@ -174,9 +174,9 @@ function keyInput() {
   
   //level change
   if (keyWentUp(LEFT_ARROW)){
-    loadLevel['1.0']();
+    loadLevel['1.0'](0,0);
   }else if (keyWentUp(RIGHT_ARROW)){
-    loadLevel['1.1']();
+    loadLevel['1.1'](0,0);
   }
 }
 
@@ -359,7 +359,7 @@ function loadHero() {
   hero.add(spr);
 }
 
-loadLevel['1.0'] = function() {
+loadLevel['1.0'] = function(x,y) {
   //platforms
   ground.clear();
   ground.add( createPlatform(0,2,1,1, squareGroundImg) );
@@ -370,13 +370,16 @@ loadLevel['1.0'] = function() {
   //ladders
   ladders.clear();
   ladders.add( createLadder(0,-8,6, ladderImg) );
+  //doors
+  doors.clear();
+  doors.add( createDoor(-4, 2));
   
   //hero
-  spr.position.x = 0.5*block;
-  spr.position.y = 0*block;
+  spr.position.x = (x+0.5)*block;
+  spr.position.y = (y-0.5)*block;
 }
 
-loadLevel['1.1'] = function() {
+loadLevel['1.1'] = function(x,y) {
   //platforms
   ground.clear();
   ground.add( createPlatform(8,-5,1,9, squareGroundImg) );
@@ -412,8 +415,11 @@ loadLevel['1.1'] = function() {
   ladders.add( createLadder(-7,-18,6, ladderImg) );
   ladders.add( createLadder(7,-27,5, ladderImg) );
   ladders.add( createLadder(7,-35,8, ladderImg) );
+  //doors
+  doors.clear();
+  
   
   //hero
-  spr.position.x = 0.5*block;
-  spr.position.y = 0*block;
+  spr.position.x = (x+0.5)*block;
+  spr.position.y = (y-0.5)*block;
 }
