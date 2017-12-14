@@ -334,26 +334,24 @@ function editLadder() {
 function editDoor() {
   noFill();
   stroke('rgb(0,0,255)');
-  
-
-    rect(worldMouseX()*block, (worldMouseY()-1)*block, block, block*2);
+  rect(worldMouseX()*block, (worldMouseY()-1)*block, block, block*2);
   
   if (mouseWentUp(LEFT)){
-    
     //destination prompt
+    var dest = prompt("Door Destination:");
+    if (dest != null) {
+      var temp = createDoor(worldMouseX(), worldMouseY(), dest, 0, 0);
+      temp.setCollider("rectangle", 0, 0, temp.width, temp.height );
+      temp.addToGroup(doors);
+    }
     
-    
-    
-    var temp = createDoor(worldMouseX(), worldMouseY(), dest, destX, destY);
-    temp.setCollider("rectangle", 0, 0, temp.width, temp.height );
-
-    temp.addToGroup(doors);
+    console.log( "mouse position:" + worldMouseX() +', '+ worldMouseY() );
   }
   
   if (mouseWentUp(RIGHT)){
     console.log( "right click:" + worldMouseX() +', '+ worldMouseY() );
     var temp = createSprite(worldMouseX()*block +block/2, worldMouseY()*block +block/2, 1, 1);
-    ladders.overlap( temp, removeSprite);
+    doors.overlap( temp, removeSprite);
     temp.remove();
   }
 }
