@@ -3,6 +3,7 @@ window.addEventListener("contextmenu", function(e) { e.preventDefault(); });
 var block = 32;
 var ground;
 var ladders;
+var doors;
 var spr;
 var hero;
 var squareGroundImg;
@@ -105,7 +106,7 @@ function keyInput() {
   
   
   if (keyDown('a') && !climbing){
-    spr.velocity.x += -.6;
+    spr.velocity.x += -.55;
     spr.mirrorX(-1);
     if (landed == true){
       spr.changeAnimation("walking");
@@ -114,7 +115,7 @@ function keyInput() {
     }
   }
   if (keyDown('d') && !climbing){
-    spr.velocity.x += .6;
+    spr.velocity.x += .55;
     spr.mirrorX(1);
     if (landed == true){
       spr.changeAnimation("walking");
@@ -193,6 +194,15 @@ function createLadder(x,y,h,img) {
     for (var i =0; i<h; i++){
       image(img, 0,i*block -h*block/2 +block/2,block,block);
     }
+  }
+  return temp
+}
+
+function createDoor(x,y) {
+  var temp  = createSprite(x*block +w*block/2, (y-1)*block +h*block/2, block, 2*block);
+  
+  temp.draw = function() {
+    rect(0,0,block,2*block);
   }
   return temp
 }
