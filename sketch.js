@@ -128,7 +128,8 @@ function keyInput() {
   if (keyDown('w')){
     //climbing
     if (spr.overlap(ladders, function(s,l){s.position.x = l.position.x }) ){
-      //spr.velocity.y = 0; 
+      spr.velocity.x = 0; 
+      spr.velocity.y *= 0.8;
       spr.position.y-=4 ;
       spr.changeAnimation("climbing");
       climbing = true;
@@ -143,7 +144,8 @@ function keyInput() {
   if (keyDown('s')){
     //climbing
     if (spr.overlap(ladders, function(s,l){s.position.x = l.position.x}) ){
-      //spr.velocity.y = 0;
+      spr.velocity.x = 0;
+      spr.velocity.y *= 0.8;
       spr.position.y+=4 ;
       spr.changeAnimation("climbing");
       climbing = true;
