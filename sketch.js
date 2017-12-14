@@ -19,7 +19,7 @@ var drawX;
 var drawY;
 var canClimbJumpAgain = true;
 var editMode = "platform";
-var loadLevel = [];
+var loadLevel = {};
 
 
 function preload() {
