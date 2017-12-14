@@ -105,7 +105,7 @@ function keyInput() {
   
   
   if (keyDown('a') && !climbing){
-    spr.velocity.x += -.5;
+    spr.velocity.x += -.6;
     spr.mirrorX(-1);
     if (landed == true){
       spr.changeAnimation("walking");
@@ -114,7 +114,7 @@ function keyInput() {
     }
   }
   if (keyDown('d') && !climbing){
-    spr.velocity.x += .5;
+    spr.velocity.x += .6;
     spr.mirrorX(1);
     if (landed == true){
       spr.changeAnimation("walking");
@@ -124,6 +124,7 @@ function keyInput() {
   }
   if (keyDown('w')){
     if (spr.overlap(ladders, function(s,l){s.position.x = l.position.x }) ){
+      //spr.velocity.y = 0; 
       spr.position.y-=4 ;
       spr.changeAnimation("climbing");
       climbing = true;
@@ -134,6 +135,7 @@ function keyInput() {
   }
   if (keyDown('s')){
     if (spr.overlap(ladders, function(s,l){s.position.x = l.position.x}) ){
+      //spr.velocity.y = 0;
       spr.position.y+=4 ;
       spr.changeAnimation("climbing");
       climbing = true;
