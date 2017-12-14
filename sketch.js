@@ -50,6 +50,7 @@ function setup() {
   
   ground = new Group();
   ladders = new Group();
+  doors = new Group();
   hero = new Group();
   
   loadHero();
@@ -124,6 +125,7 @@ function keyInput() {
     }
   }
   if (keyDown('w')){
+    //climbing
     if (spr.overlap(ladders, function(s,l){s.position.x = l.position.x }) ){
       //spr.velocity.y = 0; 
       spr.position.y-=4 ;
@@ -133,8 +135,12 @@ function keyInput() {
       if(frameCount%12==0)
         stepSound.play();
     }
+    
+    //entering doors
+    if (spr.overlap(doors, function(s,d){ d. }) )
   }
   if (keyDown('s')){
+    //climbing
     if (spr.overlap(ladders, function(s,l){s.position.x = l.position.x}) ){
       //spr.velocity.y = 0;
       spr.position.y+=4 ;
@@ -198,12 +204,14 @@ function createLadder(x,y,h,img) {
   return temp
 }
 
-function createDoor(x,y) {
+function createDoor(x,y, destination) {
   var temp  = createSprite(x*block +w*block/2, (y-1)*block +h*block/2, block, 2*block);
   
   temp.draw = function() {
     rect(0,0,block,2*block);
   }
+  temp.destination = destination;
+  
   return temp
 }
 
