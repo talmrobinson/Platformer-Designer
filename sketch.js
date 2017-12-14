@@ -175,6 +175,9 @@ function keyInput() {
    if (keyWentUp('2'))
      editMode = 'ladder';
   
+  if (keyWentUp('3'))
+     editMode = 'door';
+  
   //level change
   if (keyWentUp(LEFT_ARROW)){
     loadLevel['1.0'](0,0);
@@ -241,6 +244,9 @@ function editor(editorMode) {
   
   if (editorMode == 'ladder')
     editLadder();
+  
+  if (editorMode == 'door')
+    editDoor();
   
   if (keyWentUp('p')){
     printMap();
@@ -325,6 +331,32 @@ function editLadder() {
   }
 }
 
+function editDoor() {
+  noFill();
+  stroke('rgb(0,0,255)');
+  
+
+    rect(worldMouseX()*block, (worldMouseY()-1)*block, block, block*2);
+  
+  if (mouseWentUp(LEFT)){
+    
+    //destination prompt
+    
+    
+    
+    var temp = createDoor(worldMouseX(), worldMouseY(), dest, destX, destY);
+    temp.setCollider("rectangle", 0, 0, temp.width, temp.height );
+
+    temp.addToGroup(doors);
+  }
+  
+  if (mouseWentUp(RIGHT)){
+    console.log( "right click:" + worldMouseX() +', '+ worldMouseY() );
+    var temp = createSprite(worldMouseX()*block +block/2, worldMouseY()*block +block/2, 1, 1);
+    ladders.overlap( temp, removeSprite);
+    temp.remove();
+  }
+}
 
 function printMap() {
   var temp = "";
