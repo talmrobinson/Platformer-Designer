@@ -19,6 +19,7 @@ var drawX;
 var drawY;
 var canClimbJumpAgain = true;
 var editMode = "platform";
+var loadLevel = [];
 
 
 function preload() {
@@ -50,8 +51,8 @@ function setup() {
   ladders = new Group();
   hero = new Group();
   
-  loadLevel1();
   loadHero();
+  loadLevel['1.0']();
   //spr.scale = 2;
   //spr.limitSpeed(10);
   //bgMusic.play();
@@ -345,7 +346,7 @@ function loadHero() {
   hero.add(spr);
 }
 
-function loadLevel1() {
+loadLevel['1.0'] = function() {
   ground.clear();
   //platforms
   ground.add( createPlatform(0,2,1,1, squareGroundImg) );
@@ -356,9 +357,13 @@ function loadLevel1() {
   //ladders
   ladders.clear();
   ladders.add( createLadder(0,-8,6, ladderImg) );
+  
+  //hero
+  spr.position.x = 0.5*block;
+  spr.position.y = 0*block;
 }
 
-function loadLevel2() {
+loadLevel['1.1'] = function() {
   ground.clear();
   //platforms
   ground.add( createPlatform(0,2,1,1, squareGroundImg) );
@@ -369,4 +374,8 @@ function loadLevel2() {
   //ladders
   ladders.clear();
   ladders.add( createLadder(0,-8,6, ladderImg) );
+  
+  //hero
+  spr.position.x = 0.5*block;
+  spr.position.y = 0*block;
 }
