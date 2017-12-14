@@ -96,6 +96,7 @@ function draw() {
   moveCamera();
   ground.draw();
   ladders.draw();
+  doors.draw();
   hero.draw();
   
   editor(editMode);
@@ -205,9 +206,10 @@ function createLadder(x,y,h,img) {
 }
 
 function createDoor(x,y,destination, destX, destY) {
-  var temp  = createSprite(x*block +w*block/2, (y-1)*block +h*block/2, block, 2*block);
+  var temp  = createSprite(x*block +block/2, (y-1)*block +2*block/2, block, 2*block);
   
   temp.draw = function() {
+    fill(color(124));
     rect(0,0,block,2*block);
   };
   temp.destination = destination;
@@ -372,7 +374,7 @@ loadLevel['1.0'] = function(x,y) {
   ladders.add( createLadder(0,-8,6, ladderImg) );
   //doors
   doors.clear();
-  doors.add( createDoor(-4, 2));
+  doors.add( createDoor(-4, 2,'1.1',0,0));
   
   //hero
   spr.position.x = (x+0.5)*block;
@@ -417,6 +419,7 @@ loadLevel['1.1'] = function(x,y) {
   ladders.add( createLadder(7,-35,8, ladderImg) );
   //doors
   doors.clear();
+  doors.add( createDoor(-6, -31,'1.0',0,0));
   
   
   //hero
