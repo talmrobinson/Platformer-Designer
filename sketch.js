@@ -54,7 +54,7 @@ function setup() {
   hero = new Group();
   
   loadHero();
-  loadLevel['1.0']();
+  loadLevel['1.0'](0,0);
   //spr.scale = 2;
   //spr.limitSpeed(10);
   //bgMusic.play();
@@ -137,7 +137,7 @@ function keyInput() {
     }
     
     //entering doors
-    if (spr.overlap(doors, function(s,d){ d. }) )
+    if (spr.overlap(doors, function(s,d){ d.teleport() }) )
   }
   if (keyDown('s')){
     //climbing
@@ -204,13 +204,18 @@ function createLadder(x,y,h,img) {
   return temp
 }
 
-function createDoor(x,y, destination) {
+function createDoor(x,y,destination, destX, destY) {
   var temp  = createSprite(x*block +w*block/2, (y-1)*block +h*block/2, block, 2*block);
   
   temp.draw = function() {
     rect(0,0,block,2*block);
-  }
+  };
   temp.destination = destination;
+  temp.destinationX = destX;
+  temp.destinationY = destY;
+  temp.teleport = function() {
+    loadLevel[temp.destination](temp.destinationX,temp.destinationY);
+  };
   
   return temp
 }
