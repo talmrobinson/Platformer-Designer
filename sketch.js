@@ -164,10 +164,11 @@ function keyInput() {
      editMode = 'ladder';
   
   //level change
-  if (keyWentUp(LEFT_ARROW))
-    loadlLevel['1.0']();
-  else if (keyWentUp(RIGHT_ARROW))
-    loadlLevel['1.1']();
+  if (keyWentUp(LEFT_ARROW)){
+    loadLevel['1.0']();
+  }else if (keyWentUp(RIGHT_ARROW)){
+    loadLevel['1.1']();
+  }
 }
 
 function moveCamera() {
@@ -321,6 +322,7 @@ function editLadder() {
 function printMap() {
   var temp = "";
   temp +="//platforms\n";
+  temp +="ground.clear();\n";
   for(var i =0; i<ground.length;i++){
     var x = (ground[i].position.x-ground[i]._internalWidth/2)/block;
     var y = (ground[i].position.y-ground[i]._internalHeight/2)/block;
@@ -330,6 +332,7 @@ function printMap() {
   }
   
   temp +="//ladders\n";
+  temp +="ladders.clear();\n";
   for(var i =0; i<ladders.length;i++){
     var x = (ladders[i].position.x-ladders[i]._internalWidth/2)/block;
     var y = (ladders[i].position.y-ladders[i]._internalHeight/2)/block;
@@ -354,8 +357,8 @@ function loadHero() {
 }
 
 loadLevel['1.0'] = function() {
-  ground.clear();
   //platforms
+  ground.clear();
   ground.add( createPlatform(0,2,1,1, squareGroundImg) );
   ground.add( createPlatform(1,-4,1,7, squareGroundImg) );
   ground.add( createPlatform(-1,-4,1,7, squareGroundImg) );
@@ -371,8 +374,8 @@ loadLevel['1.0'] = function() {
 }
 
 loadLevel['1.1'] = function() {
-  ground.clear();
   //platforms
+  ground.clear();
   ground.add( createPlatform(8,-5,1,9, squareGroundImg) );
   ground.add( createPlatform(-8,-5,1,9, squareGroundImg) );
   ground.add( createPlatform(8,-15,1,10, squareGroundImg) );
@@ -400,6 +403,7 @@ loadLevel['1.1'] = function() {
   ground.add( createPlatform(6,3,1,1, squareGroundImg) );
   ground.add( createPlatform(-6,3,1,1, squareGroundImg) );
   //ladders
+  ladders.clear();
   ladders.add( createLadder(0,-8,8, ladderImg) );
   ladders.add( createLadder(0,-9,1, ladderImg) );
   ladders.add( createLadder(-7,-18,6, ladderImg) );
