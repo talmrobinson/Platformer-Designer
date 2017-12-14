@@ -123,7 +123,7 @@ function keyInput() {
     }
   }
   if (keyDown('w')){
-    if (spr.overlap(ladders, function(s,l){s.position.x -= (s.position.x-l.position.x)*.5 }) ){
+    if (spr.overlap(ladders, function(s,l){s.position.x = l.position.x }) ){
       spr.position.y-=4 ;
       spr.changeAnimation("climbing");
       climbing = true;
@@ -133,7 +133,7 @@ function keyInput() {
     }
   }
   if (keyDown('s')){
-    if (spr.overlap(ladders, function(s,l){s.position.x -= (s.position.x-l.position.x)*.5 }) ){
+    if (spr.overlap(ladders, function(s,l){s.position.x = l.position.x}) ){
       spr.position.y+=4 ;
       spr.changeAnimation("climbing");
       climbing = true;
@@ -172,8 +172,8 @@ function keyInput() {
 }
 
 function moveCamera() {
-  camera.position.x -= (camera.position.x - spr.position.x)*.5 ;
-  camera.position.y -= (camera.position.y - spr.position.y)*.5 ;
+  camera.position.x -= (camera.position.x - spr.position.x)*.2 ;
+  camera.position.y -= (camera.position.y - spr.position.y)*.2 ;
 }
 
 function createPlatform(x,y,w,h,img) {
