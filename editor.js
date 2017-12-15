@@ -140,6 +140,7 @@ function printMap() {
     var w = ground[i]._internalWidth/block;
     var h = ground[i]._internalHeight/block;
     temp += x +","+ y +","+ w +","+ h +",\n";
+    levels[currentLevel].ground.push(x,y,w,h);
   }
   temp +="],\n";
   
@@ -149,6 +150,7 @@ function printMap() {
     var y = (ladders[i].position.y-ladders[i]._internalHeight/2)/block;
     var h = ladders[i]._internalHeight/block;
     temp += x +","+ y +","+ h +",\n";
+    levels[currentLevel].ladders.push(x,y,h);
   }
   temp +="],\n";
   
@@ -160,6 +162,7 @@ function printMap() {
     var destX = doors[i].destinationX;
     var destY = doors[i].destinationY;
     temp += x +","+ y +", \'"+ destination +"\',"+ destX +","+ destY +",\n";
+    levels[currentLevel].doors.push(x,y,destination,destX,destY);
   }
   temp +="],\n";
   temp +="};";
