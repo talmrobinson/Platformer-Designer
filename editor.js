@@ -131,10 +131,9 @@ function editDoor() {
 }
 
 function printMap() {
-  var temp = "level[\'"+currentLevel+"\'] ={\n";
+  var temp = "levels[\'"+currentLevel+"\'] ={\n";
   
-  temp +="//platforms\n";
-  temp +="ground: [\n";
+  temp += "ground: [\n";
   for(var i =0; i<ground.length;i++){
     var x = (ground[i].position.x-ground[i]._internalWidth/2)/block;
     var y = (ground[i].position.y-ground[i]._internalHeight/2)/block;
@@ -142,9 +141,8 @@ function printMap() {
     var h = ground[i]._internalHeight/block;
     temp += x +","+ y +","+ w +","+ h +",\n";
   }
-  temp +="];\n"
+  temp +="],\n";
   
-  temp +="//ladders\n";
   temp +="ladders: [\n";
   for(var i =0; i<ladders.length;i++){
     var x = (ladders[i].position.x-ladders[i]._internalWidth/2)/block;
@@ -152,9 +150,8 @@ function printMap() {
     var h = ladders[i]._internalHeight/block;
     temp += x +","+ y +","+ h +",\n";
   }
-  temp +="];\n"
+  temp +="],\n";
   
-  temp +="//doors\n";
   temp +="doors: [\n";
   for(var i =0; i<doors.length;i++){
     var x = (doors[i].position.x-doors[i]._internalWidth/2)/block;
@@ -164,7 +161,8 @@ function printMap() {
     var destY = doors[i].destinationY;
     temp += x +","+ y +", \'"+ destination +"\',"+ destX +","+ destY +",\n";
   }
-  temp +="];\n"
+  temp +="],\n";
+  temp +="};";
   
   console.log(temp);
 }

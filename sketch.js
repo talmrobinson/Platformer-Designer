@@ -19,8 +19,7 @@ var standingImage;
 var drawX;
 var drawY;
 var canClimbJumpAgain = true;
-var levels = {};
-var currentLevel;
+var currentLevel = '1.0';
 
 
 function preload() {
@@ -205,6 +204,7 @@ function createDoor(x,y,destination, destX, destY) {
   temp.destinationX = destX;
   temp.destinationY = destY;
   temp.teleport = function() {
+    if (levels[temp.destinationx])
     loadLevel(temp.destination,temp.destinationX,temp.destinationY);
     currentLevel = temp.destination;
   };
@@ -252,7 +252,7 @@ function loadLevel(name,x,y){
   doors.clear();
   var temp = levels[name].doors;
   for (var i=0; i<temp.length;i+=5){
-    ground.add( createDoor(temp[i],temp[i+1],temp[i+2],temp[i+3],temp[i+4].destY) );
+    ground.add( createDoor(temp[i],temp[i+1],temp[i+2],temp[i+3],temp[i+4]) );
   }
   
   //hero
