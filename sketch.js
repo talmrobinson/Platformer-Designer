@@ -65,9 +65,8 @@ function draw() {
   
   if (!climbing)
     spr.addSpeed(1.2, 90);
-  else if (!spr.overlap(ladders)){
-    climbing = false;
-    spr.addSpeed(1.2, 90);
+  else if (!spr.overlap(ladders) && spr.velocity.y <= 0){
+    spr.position.y+=4 ;
   }
     
     
