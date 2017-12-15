@@ -19,7 +19,7 @@ var standingImage;
 var drawX;
 var drawY;
 var canClimbJumpAgain = true;
-var loadLevel = {};
+var levels = {};
 
 
 function preload() {
@@ -252,9 +252,13 @@ loadLevel['1.0'] = function(x,y) {
   spr.position.y = (y-0.5)*block;
 }
 
-loadLevel['1.1'] = function(x,y) {
+function loadLevel(name,x,y){
   //platforms
   ground.clear();
+  var temp = levels[name].ground;
+  for (var i=0; i<temp.length;i++){
+    ground.add( createPlatform(temp[0],)
+  }
   ground.add( createPlatform(8,-5,1,9, squareGroundImg) );
   ground.add( createPlatform(-8,-5,1,9, squareGroundImg) );
   ground.add( createPlatform(8,-15,1,10, squareGroundImg) );
