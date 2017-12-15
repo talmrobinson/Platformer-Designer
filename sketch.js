@@ -83,7 +83,6 @@ function draw() {
       stepSound.play();
       camera.position.y-=5; //camera shake thump effect
     }
-    
     if (climbing)
       climbing = false;
     
@@ -147,6 +146,7 @@ function keyInput() {
       spr.position.y-=4 ;
       spr.changeAnimation("climbing");
       climbing = true;
+      landed = false;
       
       if(frameCount%12==0)
         stepSound.play();
@@ -163,6 +163,7 @@ function keyInput() {
       spr.position.y+=4 ;
       spr.changeAnimation("climbing");
       climbing = true;
+      landed = false;
       
       if(frameCount%12==0)
         stepSound.play();
