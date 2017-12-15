@@ -134,34 +134,37 @@ function printMap() {
   var temp = "level[\'"+currentLevel+"\'] ={\n";
   
   temp +="//platforms\n";
-  temp +="ground.clear();\n";
+  temp +="ground: [\n";
   for(var i =0; i<ground.length;i++){
-    t.x = (ground[i].position.x-ground[i]._internalWidth/2)/block;
-    t.y = (ground[i].position.y-ground[i]._internalHeight/2)/block;
-    t.w = ground[i]._internalWidth/block;
-    t.h = ground[i]._internalHeight/block;
-    temp += "ground.add( createPlatform("+ x +","+ y +","+ w +","+ h +", squareGroundImg) );\n";
+    var x = (ground[i].position.x-ground[i]._internalWidth/2)/block;
+    var y = (ground[i].position.y-ground[i]._internalHeight/2)/block;
+    var w = ground[i]._internalWidth/block;
+    var h = ground[i]._internalHeight/block;
+    temp += x +","+ y +","+ w +","+ h +",\n";
   }
+  temp +="];\n"
   
   temp +="//ladders\n";
-  temp +="ladders.clear();\n";
+  temp +="ladders: [\n";
   for(var i =0; i<ladders.length;i++){
     var x = (ladders[i].position.x-ladders[i]._internalWidth/2)/block;
     var y = (ladders[i].position.y-ladders[i]._internalHeight/2)/block;
     var h = ladders[i]._internalHeight/block;
-    temp += "ladders.add( createLadder("+ x +","+ y +","+ h +", ladderImg) );\n";
+    temp += x +","+ y +","+ h +",\n";
   }
+  temp +="];\n"
   
   temp +="//doors\n";
-  temp +="doors.clear();\n";
+  temp +="doors: [\n";
   for(var i =0; i<doors.length;i++){
     var x = (doors[i].position.x-doors[i]._internalWidth/2)/block;
     var y = 1+ (doors[i].position.y-doors[i]._internalHeight/2)/block;
     var destination = doors[i].destination;
     var destX = doors[i].destinationX;
     var destY = doors[i].destinationY;
-    temp += "doors.add( createDoor("+ x +","+ y +", \'"+ destination +"\',"+ destX +","+ destY +") );\n";
+    temp += x +","+ y +", \'"+ destination +"\',"+ destX +","+ destY +",\n";
   }
+  temp +="];\n"
   
   console.log(temp);
 }

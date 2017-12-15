@@ -54,7 +54,7 @@ function setup() {
   hero = new Group();
   
   loadHero();
-  loadLevel['1.0'](0,0);
+  loadLevel('1.0',0,0);
   //spr.scale = 2;
   //spr.limitSpeed(10);
   //bgMusic.play();
@@ -238,21 +238,21 @@ function loadLevel(name,x,y){
   //platforms
   ground.clear();
   var temp = levels[name].ground;
-  for (var i=0; i<temp.length;i++){
-    ground.add( createPlatform(temp[i].x,temp[i].y,temp[i].w,temp[i].h, squareGroundImg) );
+  for (var i=0; i<temp.length;i+=4){
+    ground.add( createPlatform(temp[i],temp[i+1],temp[i+2],temp[i+3], squareGroundImg) );
   }
 
   //ladders
   ladders.clear();
   var temp = levels[name].ladders;
-  for (var i=0; i<temp.length;i++){
-    ground.add( createLadder(temp[i].x,temp[i].y,temp[i].h, ladderImg) );
+  for (var i=0; i<temp.length;i+=3){
+    ground.add( createLadder(temp[i].x,temp[i+1].y,temp[i+2].h, ladderImg) );
   }
   //doors
   doors.clear();
   var temp = levels[name].doors;
-  for (var i=0; i<temp.length;i++){
-    ground.add( createDoor(temp[i].x,temp[i].y,temp[i].destination,temp[i].destX,temp[i].destY) );
+  for (var i=0; i<temp.length;i+=5){
+    ground.add( createDoor(temp[i],temp[i+1],temp[i+2],temp[i+3],temp[i+4].destY) );
   }
   
   //hero
