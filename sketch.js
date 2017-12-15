@@ -52,7 +52,6 @@ function setup() {
   doors = new Group();
   hero = new Group();
   
-  loadHero();
   loadLevel('1.0',10.5,4);
   //spr.scale = 2;
   //spr.limitSpeed(10);
@@ -251,7 +250,6 @@ function worldMouseY() {
 
 function loadHero() {
   spr = createSprite(0.5*block, 0, block, block*2);
-  spr.shapeColor = color(255);
   spr.friction = 0.1;
   spr.addAnimation( "walking", walkingAnimation);
   spr.addAnimation( "jumping", walkingAnimation.getImageAt(0));

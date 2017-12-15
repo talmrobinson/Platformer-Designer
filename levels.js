@@ -1,4 +1,11 @@
 function loadLevel(name,x,y){
+  for (var i =0; i<allSprites.length; i++){
+    allSprites[i].remove();
+  }
+  
+  // hero
+  loadHero();
+  
   //platforms
   ground.clear();
   var temp = levels[name].ground;
