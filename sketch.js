@@ -66,14 +66,13 @@ function draw() {
   if (!climbing)
     spr.addSpeed(1.2, 90);
   else if (!spr.overlap(ladders)){
-    if (spr.velocity.y <= 0){
+    if (spr.velocity.y < 1){
     spr.position.y+=4;
     spr.velocity.y=0;
     }else{
       spr.addSpeed(1.2, 90);
       climbing = false;
-    }
-      
+    }   
   }
     
     
@@ -103,6 +102,9 @@ function draw() {
   ladders.draw();
   doors.draw();
   hero.draw();
+  
+  if (frameCount%20 == 0)
+  console.log(climbing);
   
   editor(editMode);
 }
@@ -163,6 +165,7 @@ function keyInput() {
     if (landed || (climbing && canClimbJump) ) {
       spr.velocity.y = -16;
       jumpSound.play();
+      canClimbJump = false;
     }
     else if (spr.velocity.y < 0){
       spr.velocity.y -=1;
