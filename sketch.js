@@ -105,6 +105,15 @@ function draw() {
   hero.draw();
 
   editor(editMode);
+  
+  //outside boundaries for peeking beyond camera
+  camera.off();
+  noStroke();
+  fill( color(255,255,255,191));
+  rect(0,0,width,block);
+  rect(0,height-block,width,block);
+  rect(0,block,block,height-block*2);
+  rect(width-block,block,block,height-block*2);
 }
 
 function keyInput() {
