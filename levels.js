@@ -1,10 +1,13 @@
 function loadLevel(name,x,y){
-  for (var i =0; i<allSprites.length; i++){
-    allSprites[i].remove();
+  for (var i =0; i<ground.length; i++){
+     ground[i].remove();
   }
-  
-  // hero
-  loadHero();
+  for (var i =0; i<ladders.length; i++){
+     ladders[i].remove();
+  }
+  for (var i =0; i<doors.length; i++){
+     doors[i].remove();
+  }
   
   //platforms
   ground.clear();
