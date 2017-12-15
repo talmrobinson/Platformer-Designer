@@ -18,7 +18,6 @@ var climbingAnimation;
 var standingImage;
 var drawX;
 var drawY;
-var canClimbJumpAgain = true;
 var currentLevel = '1.0';
 
 
@@ -65,8 +64,15 @@ function draw() {
   
   if (!climbing)
     spr.addSpeed(1.2, 90);
-  else if (!spr.overlap(ladders) && spr.velocity.y <= 0){
-    spr.position.y+=4 ;
+  else if (!spr.overlap(ladders)){
+    if (spr.velocity.y <= 0){
+    spr.position.y+=4;
+    spr.velocity.y=0;
+    }else{
+      spr.addSpeed(1.2, 90);
+      climbing = false;
+    }
+      
   }
     
     
@@ -153,11 +159,10 @@ function keyInput() {
     }
   }
   if (keyDown(' ')){
-    if (landed || (climbing && canClimbJumpAgain)) {
+    if (landed || climbing) {
       spr.velocity.y = -16;
       jumpSound.play();
       climbing = false;
-      canClimbJumpAgain = false;
     }
     else if (spr.velocity.y < 0 && !climbing){
       spr.velocity.y -=1;
