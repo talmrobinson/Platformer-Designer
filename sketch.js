@@ -44,7 +44,7 @@ function preload() {
 }
 
 function setup() {
-  var cnv = createCanvas(512,480);
+  var cnv = createCanvas(544,512);
   cnv.parent('sketch-holder');
   
   ground = new Group();
@@ -178,6 +178,12 @@ function keyInput() {
 function moveCamera() {
   camera.position.x -= (camera.position.x - spr.position.x)*.2 ;
   camera.position.y -= (camera.position.y - spr.position.y)*.2 ;
+  
+  if (camera.position.y > 0)
+    camera.position.y = 0
+  
+  if (camera.position.x < 0)
+    camera.position.x = 0
 }
 
 function createPlatform(x,y,w,h,img) {
