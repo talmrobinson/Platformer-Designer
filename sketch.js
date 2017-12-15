@@ -204,7 +204,7 @@ function createDoor(x,y,destination, destX, destY) {
   temp.destinationX = destX;
   temp.destinationY = destY;
   temp.teleport = function() {
-    loadLevel[temp.destination](temp.destinationX,temp.destinationY);
+    loadLevel(temp.destination,temp.destinationX,temp.destinationY);
   };
   
   return temp
@@ -232,70 +232,26 @@ function loadHero() {
   hero.add(spr);
 }
 
-loadLevel['1.0'] = function(x,y) {
-  //platforms
-  ground.clear();
-  ground.add( createPlatform(0,2,1,1, squareGroundImg) );
-  ground.add( createPlatform(1,-4,1,7, squareGroundImg) );
-  ground.add( createPlatform(-1,-4,1,7, squareGroundImg) );
-  ground.add( createPlatform(-4,3,9,1, squareGroundImg) );
-  ground.add( createPlatform(0,4,1,1, squareGroundImg) );
-  //ladders
-  ladders.clear();
-  ladders.add( createLadder(0,-8,6, ladderImg) );
-  //doors
-  doors.clear();
-  doors.add( createDoor(-4, 2,'1.1',0,0));
-  
-  //hero
-  spr.position.x = (x+0.5)*block;
-  spr.position.y = (y-0.5)*block;
-}
-
 function loadLevel(name,x,y){
   //platforms
   ground.clear();
   var temp = levels[name].ground;
   for (var i=0; i<temp.length;i++){
-    ground.add( createPlatform(temp[0],)
+    ground.add( createPlatform(temp[i].x,temp[i].y,temp[i].w,temp[i].h, squareGroundImg) );
   }
-  ground.add( createPlatform(8,-5,1,9, squareGroundImg) );
-  ground.add( createPlatform(-8,-5,1,9, squareGroundImg) );
-  ground.add( createPlatform(8,-15,1,10, squareGroundImg) );
-  ground.add( createPlatform(-8,-17,1,12, squareGroundImg) );
-  ground.add( createPlatform(-7,-8,7,1, squareGroundImg) );
-  ground.add( createPlatform(-6,-18,5,6, squareGroundImg) );
-  ground.add( createPlatform(-8,-27,1,10, squareGroundImg) );
-  ground.add( createPlatform(8,-30,1,15, squareGroundImg) );
-  ground.add( createPlatform(8,-39,1,9, squareGroundImg) );
-  ground.add( createPlatform(8,-41,1,2, squareGroundImg) );
-  ground.add( createPlatform(-8,-41,1,14, squareGroundImg) );
-  ground.add( createPlatform(-8,4,17,1, squareGroundImg) );
-  ground.add( createPlatform(-1,-18,2,1, squareGroundImg) );
-  ground.add( createPlatform(6,-18,2,1, squareGroundImg) );
-  ground.add( createPlatform(6,-34,1,2, squareGroundImg) );
-  ground.add( createPlatform(5,-33,1,2, squareGroundImg) );
-  ground.add( createPlatform(4,-32,1,2, squareGroundImg) );
-  ground.add( createPlatform(3,-31,1,1, squareGroundImg) );
-  ground.add( createPlatform(-7,-30,11,3, squareGroundImg) );
-  ground.add( createPlatform(-1,-17,1,1, squareGroundImg) );
-  ground.add( createPlatform(7,3,1,1, squareGroundImg) );
-  ground.add( createPlatform(-7,3,1,1, squareGroundImg) );
-  ground.add( createPlatform(7,2,1,1, squareGroundImg) );
-  ground.add( createPlatform(-7,2,1,1, squareGroundImg) );
-  ground.add( createPlatform(6,3,1,1, squareGroundImg) );
-  ground.add( createPlatform(-6,3,1,1, squareGroundImg) );
+
   //ladders
   ladders.clear();
-  ladders.add( createLadder(0,-8,8, ladderImg) );
-  ladders.add( createLadder(0,-9,1, ladderImg) );
-  ladders.add( createLadder(-7,-18,6, ladderImg) );
-  ladders.add( createLadder(7,-27,5, ladderImg) );
-  ladders.add( createLadder(7,-35,8, ladderImg) );
+  var temp = levels[name].ladders;
+  for (var i=0; i<temp.length;i++){
+    ground.add( createLadder(temp[i].x,temp[i].y,temp[i].h, ladderImg) );
+  }
   //doors
   doors.clear();
-  doors.add( createDoor(-6, -31,'1.0',0,0));
-  
+  var temp = levels[name].doors;
+  for (var i=0; i<temp.length;i++){
+    ground.add( createDoor(temp[i].x,temp[i].y,temp[i].destination,temp[i].destX,temp[i].destY) );
+  }
   
   //hero
   spr.position.x = (x+0.5)*block;
