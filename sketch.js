@@ -102,10 +102,7 @@ function draw() {
   ladders.draw();
   doors.draw();
   hero.draw();
-  
-  if (frameCount%20 == 0)
-  console.log(climbing);
-  
+
   editor(editMode);
 }
 
