@@ -225,7 +225,7 @@ function worldMouseX() {
 }
 
 function worldMouseY() {
-  return Math.floor((mouseY-height/2+camera.position.y)/block);
+  return Math.floor((mouseY-height/2 +camera.position.y)/block);
 }
 
 function loadHero() {
