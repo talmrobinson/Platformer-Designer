@@ -21,6 +21,8 @@ function loadLevel(name,x,y){
   //hero
   spr.position.x = (x+0.5)*block;
   spr.position.y = (y-0.5)*block;
+  camera.position.x = spr.position.x;
+  camera.position.y = spr.position.y;
 }
 
 var levels = {};

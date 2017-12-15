@@ -122,6 +122,11 @@ function keyInput() {
   if (keyWentUp(' '))
     canClimbJump = true;
   
+  if (keyWentUp('w')){
+    //entering doors
+    spr.overlap(doors, function(s,d){ d.teleport() });
+  }
+  
   
   if (keyDown('a') && !climbing){
     spr.velocity.x += -.55;
@@ -154,9 +159,6 @@ function keyInput() {
       if(frameCount%12==0)
         stepSound.play();
     }
-    
-    //entering doors
-    spr.overlap(doors, function(s,d){ d.teleport() });
   }
   if (keyDown('s')){
     //climbing
