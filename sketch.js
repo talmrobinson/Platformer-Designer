@@ -10,6 +10,7 @@ var squareGroundImg;
 var ladderImg;
 var landed = false;
 var climbing = false;
+var canClimbJump = true;
 var bgMusic;
 var jumpSound;
 var stepSound;
@@ -108,7 +109,7 @@ function draw() {
 
 function keyInput() {
   if (keyWentUp(' '))
-    canClimbJumpAgain = true;
+    canClimbJump = true;
   
   
   if (keyDown('a') && !climbing){
@@ -133,7 +134,7 @@ function keyInput() {
     //climbing
     if (spr.overlap(ladders, function(s,l){s.position.x = l.position.x }) ){
       spr.velocity.x = 0; 
-      spr.velocity.y *= 0.8;
+      //spr.velocity.y *= 0.8;
       spr.position.y-=4 ;
       spr.changeAnimation("climbing");
       climbing = true;
@@ -149,7 +150,7 @@ function keyInput() {
     //climbing
     if (spr.overlap(ladders, function(s,l){s.position.x = l.position.x}) ){
       spr.velocity.x = 0;
-      spr.velocity.y *= 0.8;
+      //spr.velocity.y *= 0.8;
       spr.position.y+=4 ;
       spr.changeAnimation("climbing");
       climbing = true;
@@ -159,16 +160,16 @@ function keyInput() {
     }
   }
   if (keyDown(' ')){
-    if (landed || climbing) {
+    if (landed || (climbing && canClimbJump) ) {
       spr.velocity.y = -16;
       jumpSound.play();
-      climbing = false;
     }
-    else if (spr.velocity.y < 0 && !climbing){
+    else if (spr.velocity.y < 0){
       spr.velocity.y -=1;
     }
     spr.changeImage("jumping");
     landed = false;
+    climbing = false;
   }
   
 }
