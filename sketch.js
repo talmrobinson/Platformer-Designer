@@ -20,6 +20,7 @@ var drawX;
 var drawY;
 var canClimbJumpAgain = true;
 var levels = {};
+var currentLevel;
 
 
 function preload() {
@@ -205,6 +206,7 @@ function createDoor(x,y,destination, destX, destY) {
   temp.destinationY = destY;
   temp.teleport = function() {
     loadLevel(temp.destination,temp.destinationX,temp.destinationY);
+    currentLevel = temp.destination;
   };
   
   return temp

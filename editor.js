@@ -131,14 +131,15 @@ function editDoor() {
 }
 
 function printMap() {
-  var temp = "";
+  var temp = "level[\'"+currentLevel+"\'] ={\n";
+  
   temp +="//platforms\n";
   temp +="ground.clear();\n";
   for(var i =0; i<ground.length;i++){
-    var x = (ground[i].position.x-ground[i]._internalWidth/2)/block;
-    var y = (ground[i].position.y-ground[i]._internalHeight/2)/block;
-    var w = ground[i]._internalWidth/block;
-    var h = ground[i]._internalHeight/block;
+    t.x = (ground[i].position.x-ground[i]._internalWidth/2)/block;
+    t.y = (ground[i].position.y-ground[i]._internalHeight/2)/block;
+    t.w = ground[i]._internalWidth/block;
+    t.h = ground[i]._internalHeight/block;
     temp += "ground.add( createPlatform("+ x +","+ y +","+ w +","+ h +", squareGroundImg) );\n";
   }
   
