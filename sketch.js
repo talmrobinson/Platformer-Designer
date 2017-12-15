@@ -57,6 +57,7 @@ function setup() {
   //spr.scale = 2;
   //spr.limitSpeed(10);
   //bgMusic.play();
+  //camera.zoom = 2;
 }
 
 function draw() {
