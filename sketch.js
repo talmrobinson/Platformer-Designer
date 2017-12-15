@@ -248,13 +248,13 @@ function loadLevel(name,x,y){
   ladders.clear();
   var temp = levels[name].ladders;
   for (var i=0; i<temp.length;i+=3){
-    ground.add( createLadder(temp[i].x,temp[i+1].y,temp[i+2].h, ladderImg) );
+    ladders.add( createLadder(temp[i].x,temp[i+1].y,temp[i+2].h, ladderImg) );
   }
   //doors
   doors.clear();
   var temp = levels[name].doors;
   for (var i=0; i<temp.length;i+=5){
-    ground.add( createDoor(temp[i],temp[i+1],temp[i+2],temp[i+3],temp[i+4]) );
+    doors.add( createDoor(temp[i],temp[i+1],temp[i+2],temp[i+3],temp[i+4]) );
   }
   
   //hero
