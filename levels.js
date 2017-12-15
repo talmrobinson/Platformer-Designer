@@ -1,13 +1,8 @@
 function loadLevel(name,x,y){
-  for (var i =0; i<ground.length; i++){
-     ground[i].remove();
-  }
-  for (var i =0; i<ladders.length; i++){
-     ladders[i].remove();
-  }
-  for (var i =0; i<doors.length; i++){
-     doors[i].remove();
-  }
+  allSprites.removeSprites();
+  
+  // hero
+  loadHero();
   
   //platforms
   ground.clear();
@@ -30,7 +25,7 @@ function loadLevel(name,x,y){
   
   //hero
   spr.position.x = (x+0.5)*block;
-  spr.position.y = (y-0.5)*block;
+  spr.position.y = (y)*block;
   camera.position.x = spr.position.x;
   camera.position.y = spr.position.y;
 }

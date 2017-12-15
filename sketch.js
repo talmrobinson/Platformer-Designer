@@ -52,8 +52,6 @@ function setup() {
   doors = new Group();
   hero = new Group();
   
-  // hero
-  loadHero();
   
   loadLevel('1.0',10.5,4);
   //spr.scale = 2;
