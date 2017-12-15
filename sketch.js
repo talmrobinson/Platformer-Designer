@@ -190,10 +190,10 @@ function moveCamera() {
   camera.position.y -= (camera.position.y - spr.position.y)*.2 ;
   
   if (camera.position.y > 0)
-    camera.position.y = 0
+    camera.position.y = 0;
   
-  if (camera.position.x < 0)
-    camera.position.x = 0
+  if (camera.position.x < -16)
+    camera.position.x = -16;
 }
 
 function createPlatform(x,y,w,h,img) {
