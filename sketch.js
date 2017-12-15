@@ -204,7 +204,9 @@ function createDoor(x,y,destination, destX, destY) {
   temp.destinationX = destX;
   temp.destinationY = destY;
   temp.teleport = function() {
-    if (levels[temp.destinationx])
+    if (levels[temp.destination] == undefined)
+      levels[temp.destination] ={ground:[0,0,1,1,],ladders:[],doors:[],};
+    
     loadLevel(temp.destination,temp.destinationX,temp.destinationY);
     currentLevel = temp.destination;
   };
