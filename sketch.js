@@ -53,11 +53,14 @@ function setup() {
   hero = new Group();
   
   loadHero();
-  loadLevel('1.0',0,0);
+  loadLevel('1.0',10.5,4);
   //spr.scale = 2;
   //spr.limitSpeed(10);
   //bgMusic.play();
   //camera.zoom = 2;
+  
+  camera.position.x = spr.position.x;
+  camera.position.y = spr.position.y;
 }
 
 function draw() {
