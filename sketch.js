@@ -104,7 +104,7 @@ function draw() {
   ground.draw();
   ladders.draw();
   doors.draw();
-  hero.draw();
+  //hero.draw();
 
   editor(editMode);
   
