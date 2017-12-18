@@ -4,6 +4,7 @@ var block = 32;
 var ground;
 var ladders;
 var doors;
+var mines;
 var spr;
 var hero;
 var squareGroundImg;
@@ -50,6 +51,7 @@ function setup() {
   ground = new Group();
   ladders = new Group();
   doors = new Group();
+  mines = new Group();
   hero = new Group();
   
   
@@ -238,6 +240,16 @@ function createDoor(x,y,destination, destX, destY) {
     currentLevel = temp.destination;
   };
   
+  return temp
+}
+
+function createmine(x,y,h,img) {
+  var temp  = createSprite(x*block +block/2, y*block +h*block/2, block, h*block);
+  temp.draw = function() {
+    for (var i =0; i<h; i++){
+      image(img, 0,i*block -h*block/2 +block/2,block,block);
+    }
+  }
   return temp
 }
 
