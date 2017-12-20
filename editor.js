@@ -114,7 +114,7 @@ function editDoor() {
     //destination prompt
     var dest = prompt("Door Destination:");
     if (dest != null) {
-      var temp = createDoor(worldMouseX(), worldMouseY(), dest, 0, 0);
+      var temp = createDoor(worldMouseX(), worldMouseY(), dest, 0, -1);
       temp.setCollider("rectangle", 0, 0, temp.width, temp.height );
       temp.addToGroup(doors);
     }
