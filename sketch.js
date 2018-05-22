@@ -19,7 +19,7 @@ var climbingAnimation;
 var standingImage;
 var drawX;
 var drawY;
-var currentLevel = '1.0';
+var currentLevel = '1';
 
 
 function preload() {
@@ -53,7 +53,7 @@ function setup() {
   hero = new Group();
   
   
-  loadLevel('1.0',10.5,4);
+  loadLevel('1',10.5,4);
   //spr.scale = 2;
   //spr.limitSpeed(10);
   //bgMusic.play();
