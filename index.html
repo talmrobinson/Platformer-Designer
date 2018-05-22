@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <style> body {padding: 0; margin: 0; background-color: grey; font-family:verdana;} #defaultCanvas0 {width: 600px;}</style>
+    <style> body {padding: 0; margin: 0; background-color: grey; font-family:verdana;display: inline-block;}
+      #guide {overflow-y: scroll; height:512px; width: 200px;display: inline-block;}
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.min.js"></script>
     <script src="https://cdn.glitch.com/10b9656a-6efd-4743-9e64-c92d136ef747%2Fp5.play.js?1512962757023"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/addons/p5.dom.min.js"></script>
@@ -10,7 +12,7 @@
     <script src="editor.js"></script>
     <script src="levels.js"></script>
   </head>
-  <body>
+  <body><div>
     <div id="sketch-holder"></div>
     <div id="guide">Desinging levels:
       <ul>
