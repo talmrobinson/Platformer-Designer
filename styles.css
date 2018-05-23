@@ -1,4 +1,16 @@
-h1 {
-  color: fuchsia;
+body {
+  padding: 0;
+  margin: 0;
+  background-color: grey;
+  font-family:verdana;
+}
+#sketch-holder {
+  display: inline-block;
+}
+#guide {
+  overflow-y: scroll;
+  width: 544px;
+  display: inline-block;
+  background-color: silver;
 }
 

@@ -172,3 +172,46 @@ function printMap() {
   
   console.log(temp);
 }
+
+
+// different types of object constructors
+
+function createPlatform(x,y,w,h,img) {
+  var temp  = createSprite(x*block +w*block/2, y*block +h*block/2, w*block, h*block);
+  
+  temp.draw = function() {
+    image(img,0,0,w*block,h*block,0,0,w*16,h*16);
+  }
+  return temp
+}
+
+function createLadder(x,y,h,img) {
+  var temp  = createSprite(x*block +block/2, y*block +h*block/2, block, h*block);
+  temp.draw = function() {
+    for (var i =0; i<h; i++){
+      image(img, 0,i*block -h*block/2 +block/2,block,block);
+    }
+  }
+  return temp
+}
+
+function createDoor(x,y,destination, destX, destY) {
+  var temp  = createSprite(x*block +block/2, (y-1)*block +2*block/2, block, 2*block);
+  
+  temp.draw = function() {
+    fill(color(124));
+    rect(0,0,block,2*block);
+  };
+  temp.destination = destination;
+  temp.destinationX = destX;
+  temp.destinationY = destY;
+  temp.teleport = function() {
+    if (levels[temp.destination] == undefined)
+      levels[temp.destination] ={ground:[0,0,1,1,],ladders:[],doors:[],};
+    
+    loadLevel(temp.destination,temp.destinationX,temp.destinationY);
+    currentLevel = temp.destination;
+  };
+  
+  return temp
+}

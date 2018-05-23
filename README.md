@@ -1,19 +1,17 @@
-# My cool website
+# Platformer-Designer
 
-This file describes your project to the community. What's your cool website about? What makes it special?
+Design your own levels for a 2D platformer and explore them without writing any code!
 
-ヽ(๏∀๏ )ﾉ
+(◕‿◕✿)
 
 ## ← index.html
+Webpage
 
-Where you'll write the content of your website. 
+## ← levels.js
+Code for loading/storing levels
 
-## ← styles.css
+## ← editor.js
+Editor code for creating platforms/ladders/doors
 
-CSS files add styling rules to your content
-
-## ← script.js
-
-If you're feeling fancy you can add interactivity to your site with Javascript
-
-# Platformer-Designer
+## ← sketch.js
+Main logic loop for game using P5.js and P5.play
